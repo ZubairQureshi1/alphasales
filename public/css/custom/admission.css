@@ -1,0 +1,35 @@
+.course-book-btn {
+    background: lightgrey;
+    padding: 5px;
+    color: white !important;
+    display: grid;
+}
+
+/* STYLES FOR AFFILIATED BODIES CHECKLISTS ON ADMISSIONS CREATE PAGE */
+.list-group-item {
+  user-select: none;
+}
+
+.list-group input[type="checkbox"] {
+  display: none;
+}
+
+.list-group input[type="checkbox"] + .list-group-item {
+  cursor: pointer;
+}
+
+.list-group input[type="checkbox"] + .list-group-item:before {
+  content: "\2713";
+  color: #2081D6;
+  font-weight: bold;
+  margin-right: 1.2em;
+}
+
+.list-group input[type="checkbox"]:checked + .list-group-item {
+  background-color: #0275D8;
+  color: #FFF;
+}
+
+.list-group input[type="checkbox"]:checked + .list-group-item:before {
+  color: inherit;
+}

@@ -1,0 +1,18 @@
+.instalment-count {
+    height: 25px;
+    width: 25px;
+    color: white;
+    padding-top: 1px;
+    text-align: center;
+    background-color: #28a745;
+    border-radius: 50%;
+    display: inline-block;
+}
+div.instalment-nth:nth-child(odd) {
+    background: #eee;
+}
+
+input.input-no-bg {
+	background-color: #ced4da00 !important;
+    border: 1px solid #ced4da00 !important;
+}

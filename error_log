@@ -1,0 +1,3 @@
+[08-Sep-2020 12:00:28 UTC] PHP Fatal error:  Cannot declare class AddColsToIndexTablesTable, because the name is already in use in /home/cfeele5/staging-analogy.cfeelearn.com/database/migrations/2020_07_27_063838_add_cols_to_index_tables_table.php on line 35
+[08-Sep-2020 12:02:12 UTC] PHP Fatal error:  Cannot declare class AddColsToIndexTablesTable, because the name is already in use in /home/cfeele5/staging-analogy.cfeelearn.com/database/migrations/2020_07_27_063838_add_cols_to_index_tables_table.php on line 35
+[08-Sep-2020 12:03:00 UTC] PHP Fatal error:  Cannot declare class AddColsToIndexTablesTable, because the name is already in use in /home/cfeele5/staging-analogy.cfeelearn.com/database/migrations/2020_07_27_063838_add_cols_to_index_tables_table.php on line 35

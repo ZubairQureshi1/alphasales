@@ -1,0 +1,49 @@
+ .custom-accordion {
+    background-color: #eee;
+    color: solid grey;
+    cursor: pointer;
+    padding-bottom: 10px;
+    margin-bottom: 2px;
+    width: 100%;
+    text-align: left;
+    border: solid lightgrey 1px;
+    outline: none;
+    transition: 0.4s;
+ }
+ /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+ .custom-accordion.active,
+ .custom-accordion:hover {
+     background-color: #6c757d;
+ }
+ /* Style the accordion panel. Note: hidden by default */
+
+ .panel {
+     padding: 0 18px;
+     background-color: white;
+ }
+
+ .custom-accordion.active a,
+ .custom-accordion:hover a {
+     color: white;
+ }
+
+ .custom-accordion.active a,
+ .custom-accordion:hover label {
+     color: white !important;
+ }
+
+ .custom-accordion a {
+     color: #737373;
+     font: 8000 13.3333px Arial;
+ }
+
+ .custom-accordion label {
+    color: #555 !important;
+    font-size: 16px !important;
+    font-weight: normal !important;
+ }
+
+ .custom-accordion h5 {
+     padding: 0 10px;
+ }

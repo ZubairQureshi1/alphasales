@@ -1,0 +1,1054 @@
+Searching 3934 files for "timestamps(10)"
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_admin_menu_items_table.php:
+   26  			$table->integer('isActive')->nullable()->default(0);
+   27  			$table->string('icon', 191)->default('mdi mdi-menu');
+   28: 			$table->timestamps(10);
+   29  		});
+   30  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_admin_menus_table.php:
+   19  			$table->string('name', 191);
+   20  			$table->boolean('is_selected')->default(0);
+   21: 			$table->timestamps(10);
+   22  		});
+   23  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_admission_affiliated_body_checklists_table.php:
+   20  			$table->bigInteger('affiliated_body_checklist_id')->unsigned()->nullable()->index('abc_id');
+   21  			$table->boolean('is_checked')->nullable();
+   22: 			$table->timestamps(10);
+   23  		});
+   24  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_admission_by_enquiry_forms_table.php:
+   18  			$table->increments('id');
+   19  			$table->integer('enquiry_id')->unsigned()->nullable()->index('admission_by_enquiry_forms_enquiry_id_foreign');
+   20: 			$table->timestamps(10);
+   21  			$table->boolean('is_admitted')->default(0);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('admission_by_enquiry_forms_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_admission_by_pwwb_forms_table.php:
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('admission_by_pwwb_forms_organization_campus_id_foreign');
+   24  			$table->bigInteger('academic_wing_id')->unsigned()->nullable()->index('admission_by_pwwb_forms_academic_wing_id_foreign');
+   25: 			$table->timestamps(10);
+   26  		});
+   27  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_admissions_table.php:
+   41  			$table->integer('session_id')->unsigned()->index();
+   42  			$table->integer('course_id')->unsigned()->index('admissions_course_id_foreign');
+   43: 			$table->timestamps(10);
+   44  			$table->softDeletes();
+   45  			$table->integer('student_id')->unsigned()->nullable()->index('admissions_student_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_af_details_table.php:
+   34  			$table->string('af_late_fee', 191)->nullable();
+   35  			$table->string('af_total_fee', 191)->nullable();
+   36: 			$table->timestamps(10);
+   37  			$table->string('af_board_university', 191)->nullable();
+   38  			$table->string('af_previous_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_affiliated_bodies_table.php:
+   19  			$table->string('name', 191);
+   20  			$table->string('code', 191);
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('affiliated_bodies_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('affiliated_bodies_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_affiliated_body_checklists_table.php:
+   19  			$table->integer('affiliated_body_id')->unsigned()->nullable()->index('affiliated_body_checklists_affiliated_body_id_foreign');
+   20  			$table->text('description')->nullable();
+   21: 			$table->timestamps(10);
+   22  		});
+   23  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_announcements_table.php:
+   22  			$table->integer('course_id')->unsigned()->nullable()->index('announcements_course_id_foreign');
+   23  			$table->integer('subject_id')->unsigned()->nullable()->index('announcements_subject_id_foreign');
+   24: 			$table->timestamps(10);
+   25  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('announcements_organization_id_foreign');
+   26  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('announcements_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_assignment_courses_table.php:
+   19  			$table->integer('course_id')->unsigned()->nullable()->index('assignment_courses_course_id_foreign');
+   20  			$table->integer('assignment_id')->unsigned()->nullable()->index('assignment_courses_assignment_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('assignment_courses_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('assignment_courses_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_assignment_results_table.php:
+   23  			$table->integer('obtain_marks')->nullable();
+   24  			$table->integer('percentage')->nullable();
+   25: 			$table->timestamps(10);
+   26  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('assignment_results_organization_id_foreign');
+   27  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('assignment_results_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_assignment_sections_table.php:
+   19  			$table->integer('section_id')->unsigned()->nullable()->index('assignment_sections_section_id_foreign');
+   20  			$table->integer('assignment_id')->unsigned()->nullable()->index('assignment_sections_assignment_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('assignment_sections_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('assignment_sections_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_assignment_subjects_table.php:
+   19  			$table->integer('subject_id')->unsigned()->nullable()->index('assignment_subjects_subject_id_foreign');
+   20  			$table->integer('assignment_id')->unsigned()->nullable()->index('assignment_subjects_assignment_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('assignment_subjects_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('assignment_subjects_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_assignments_table.php:
+   21  			$table->dateTime('due_date')->nullable();
+   22  			$table->string('attachment_url', 191)->nullable();
+   23: 			$table->timestamps(10);
+   24  			$table->integer('part_id')->nullable();
+   25  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('assignments_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_attachments_table.php:
+   19  			$table->integer('admission_id')->unsigned()->nullable()->index('attachments_admission_id_foreign');
+   20  			$table->string('attachment_url', 191)->nullable();
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('attachments_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('attachments_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_attendance_fine_vouchers_table.php:
+   19  			$table->integer('attendance_fine_id')->unsigned()->nullable()->index('attendance_fine_vouchers_attendance_fine_id_foreign');
+   20  			$table->string('voucher_code', 191)->nullable();
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('attendance_fine_vouchers_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('attendance_fine_vouchers_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_attendance_fines_table.php:
+   28  			$table->date('due_date')->nullable();
+   29  			$table->date('paid_date')->nullable();
+   30: 			$table->timestamps(10);
+   31  			$table->date('from_date')->nullable();
+   32  			$table->date('to_date')->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_attendance_logs_table.php:
+   30  			$table->integer('punch_type_id')->nullable();
+   31  			$table->string('date', 191)->nullable();
+   32: 			$table->timestamps(10);
+   33  			$table->integer('student_id')->unsigned()->nullable()->index('attendance_logs_student_id_foreign');
+   34  			$table->integer('user_id')->unsigned()->nullable()->index('attendance_logs_user_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_attendances_table.php:
+   31  			$table->integer('punch_type_id')->nullable();
+   32  			$table->string('date', 191)->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->boolean('is_late_checkin')->default(0);
+   35  			$table->boolean('is_late_checkout')->default(0);
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_audits_table.php:
+   28  			$table->string('user_agent', 191)->nullable();
+   29  			$table->string('tags', 191)->nullable();
+   30: 			$table->timestamps(10);
+   31  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('audits_organization_id_foreign');
+   32  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('audits_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_bise_details_table.php:
+   37  			$table->string('bise_late_fee', 191)->nullable();
+   38  			$table->string('bise_total_fee', 191)->nullable();
+   39: 			$table->timestamps(10);
+   40  			$table->string('bise_board_university', 191)->nullable();
+   41  			$table->string('bise_previous_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_c_a_histories_table.php:
+   23  			$table->integer('admission_id')->unsigned()->nullable()->index('c_a_histories_admission_id_foreign');
+   24  			$table->integer('student_id')->unsigned()->nullable()->index('c_a_histories_student_id_foreign');
+   25: 			$table->timestamps(10);
+   26  		});
+   27  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_cities_table.php:
+   22  			$table->string('latitude', 191)->nullable();
+   23  			$table->string('longitude', 191)->nullable();
+   24: 			$table->timestamps(10);
+   25  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('cities_organization_id_foreign');
+   26  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('cities_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_claims_table.php:
+   31  			$table->float('total_amount_received')->nullable();
+   32  			$table->float('total_amount_balance')->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->string('claim_head_default', 191)->nullable();
+   35  			$table->float('claim_amount_due_default')->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_countries_table.php:
+   19  			$table->string('name', 191)->nullable();
+   20  			$table->string('code', 191)->nullable();
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('countries_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('countries_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_course_affiliated_bodies_table.php:
+   20  			$table->integer('affiliated_body_id')->unsigned()->nullable()->index('course_affiliated_bodies_affiliated_body_id_foreign');
+   21  			$table->integer('academic_term_id')->nullable();
+   22: 			$table->timestamps(10);
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('course_affiliated_bodies_organization_id_foreign');
+   24  			$table->bigInteger('wing_id')->unsigned()->nullable()->index('course_affiliated_bodies_wing_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_course_contents_table.php:
+   24  			$table->string('planned_activities', 191)->nullable();
+   25  			$table->string('status', 191)->nullable();
+   26: 			$table->timestamps(10);
+   27  			$table->integer('user_id')->unsigned()->nullable()->index('course_contents_user_id_foreign');
+   28  			$table->integer('session_id')->unsigned()->nullable()->index('course_contents_session_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_course_enquiries_table.php:
+   19  			$table->integer('course_id')->unsigned()->nullable()->index();
+   20  			$table->integer('enquiry_id')->unsigned()->nullable()->index('course_enquiries_enquiry_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->softDeletes();
+   23  		});
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_course_subjects_table.php:
+   21  			$table->integer('course_id')->unsigned()->nullable()->index();
+   22  			$table->integer('subject_id')->unsigned()->nullable()->index();
+   23: 			$table->timestamps(10);
+   24  			$table->softDeletes();
+   25  			$table->string('semester', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_courses_table.php:
+   25  			$table->integer('no_of_semesters')->nullable();
+   26  			$table->integer('duration_per_semester')->nullable();
+   27: 			$table->timestamps(10);
+   28  			$table->softDeletes();
+   29  			$table->string('course_code', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_date_sheet_books_table.php:
+   22  			$table->dateTime('end_time')->nullable();
+   23  			$table->integer('date_sheet_id')->unsigned()->nullable()->index('date_sheet_books_date_sheet_id_foreign');
+   24: 			$table->timestamps(10);
+   25  			$table->text('syllabus')->nullable();
+   26  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('date_sheet_books_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_date_sheet_courses_table.php:
+   19  			$table->integer('course_id')->unsigned()->nullable()->index('date_sheet_courses_course_id_foreign');
+   20  			$table->integer('date_sheet_id')->unsigned()->nullable()->index('date_sheet_courses_date_sheet_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('date_sheet_courses_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('date_sheet_courses_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_date_sheet_rooms_table.php:
+   19  			$table->integer('room_id')->unsigned()->nullable()->index('date_sheet_rooms_room_id_foreign');
+   20  			$table->integer('date_sheet_id')->unsigned()->nullable()->index('date_sheet_rooms_date_sheet_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('date_sheet_rooms_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('date_sheet_rooms_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_date_sheet_sections_table.php:
+   19  			$table->integer('section_id')->unsigned()->nullable()->index('date_sheet_sections_section_id_foreign');
+   20  			$table->integer('date_sheet_id')->unsigned()->nullable()->index('date_sheet_sections_date_sheet_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('date_sheet_sections_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('date_sheet_sections_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_date_sheet_sitting_plans_table.php:
+   24  			$table->integer('section_id')->unsigned()->nullable()->index('date_sheet_sitting_plans_section_id_foreign');
+   25  			$table->integer('date_sheet_id')->unsigned()->nullable()->index('date_sheet_sitting_plans_date_sheet_id_foreign');
+   26: 			$table->timestamps(10);
+   27  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('date_sheet_sitting_plans_organization_id_foreign');
+   28  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('date_sheet_sitting_plans_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_date_sheet_students_table.php:
+   26  			$table->string('grade', 191)->nullable();
+   27  			$table->string('status', 191)->nullable();
+   28: 			$table->timestamps(10);
+   29  			$table->integer('status_id')->nullable();
+   30  			$table->integer('academic_history_id')->unsigned()->nullable()->index('date_sheet_students_academic_history_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_date_sheets_table.php:
+   21  			$table->integer('exam_type_id')->unsigned()->nullable()->index('date_sheets_exam_type_id_foreign');
+   22  			$table->string('exam_type_name', 191)->nullable();
+   23: 			$table->timestamps(10);
+   24  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('date_sheets_organization_id_foreign');
+   25  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('date_sheets_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_department_users_table.php:
+   22  			$table->string('user_name', 191)->nullable();
+   23  			$table->string('department_name', 191)->nullable();
+   24: 			$table->timestamps(10);
+   25  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('department_users_organization_id_foreign');
+   26  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('department_users_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_departments_table.php:
+   19  			$table->string('name', 191)->default('');
+   20  			$table->string('code', 191)->default('');
+   21: 			$table->timestamps(10);
+   22  			$table->softDeletes();
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('departments_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_designation_departments_table.php:
+   20  			$table->integer('department_id')->unsigned()->nullable()->index('designation_departments_department_id_foreign');
+   21  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('designation_departments_organization_campus_id_foreign');
+   22: 			$table->timestamps(10);
+   23  		});
+   24  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_designations_table.php:
+   19  			$table->string('name', 191)->default('');
+   20  			$table->string('code', 191)->default('');
+   21: 			$table->timestamps(10);
+   22  			$table->softDeletes();
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('designations_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_document_attachment_details_table.php:
+   39  			$table->string('worker_thumb', 191)->nullable();
+   40  			$table->string('oath_commission_attested', 191)->nullable();
+   41: 			$table->timestamps(10);
+   42  		});
+   43  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_dual_course_details_table.php:
+   41  			$table->string('previous_marks_obtained', 191)->nullable();
+   42  			$table->string('previous_cgpa', 191)->nullable();
+   43: 			$table->timestamps(10);
+   44  			$table->string('board_university', 191)->nullable();
+   45  			$table->string('previous_percentage', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_educational_wing_cves_table.php:
+   19  			$table->bigInteger('index_table_id')->unsigned()->index('educational_wing_cves_index_table_id_foreign');
+   20  			$table->string('educational_wing_cfe', 191)->nullable();
+   21: 			$table->timestamps(10);
+   22  		});
+   23  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_eighth_semester_details_table.php:
+   31  			$table->string('amount', 191)->nullable();
+   32  			$table->string('roll_no', 191)->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->string('readmissioneight', 191)->nullable();
+   35  			$table->string('same_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_eighth_semester_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_employee_attachments_table.php:
+   23  			$table->string('attachment_from', 191)->nullable();
+   24  			$table->integer('attachment_for')->unsigned()->nullable()->index('employee_attachments_attachment_for_foreign');
+   25: 			$table->timestamps(10);
+   26  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('employee_attachments_organization_id_foreign');
+   27  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('employee_attachments_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_employments_table.php:
+   20  			$table->date('end_employment_date')->nullable();
+   21  			$table->string('reason_end_employment', 191)->nullable();
+   22: 			$table->timestamps(10);
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('employments_organization_id_foreign');
+   24  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('employments_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_enquiries_table.php:
+   23  			$table->string('father_occupation', 191)->nullable()->default('');
+   24  			$table->string('remarks', 191)->nullable()->default('');
+   25: 			$table->timestamps(10);
+   26  			$table->softDeletes();
+   27  			$table->integer('user_id')->unsigned()->nullable()->index('enquiries_user_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_enquiry_addresses_table.php:
+   23  			$table->integer('address_type_id')->nullable();
+   24  			$table->integer('enquiry_id')->unsigned()->nullable()->index('enquiry_addresses_enquiry_id_foreign');
+   25: 			$table->timestamps(10);
+   26  			$table->softDeletes();
+   27  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('enquiry_addresses_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_enquiry_contact_infos_table.php:
+   21  			$table->string('contact_type_name', 191)->default('');
+   22  			$table->integer('enquiry_id')->unsigned()->nullable()->index('enquiry_contact_infos_enquiry_id_foreign');
+   23: 			$table->timestamps(10);
+   24  			$table->softDeletes();
+   25  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('enquiry_contact_infos_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_enquiry_followups_table.php:
+   23  			$table->integer('status_id')->nullable();
+   24  			$table->string('remarks', 191)->nullable();
+   25: 			$table->timestamps(10);
+   26  			$table->string('interest_level', 191)->nullable();
+   27  			$table->integer('interest_level_id')->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_enquiry_workers_table.php:
+   24  			$table->boolean('is_social_security')->nullable();
+   25  			$table->boolean('is_factory_registered')->nullable();
+   26: 			$table->timestamps(10);
+   27  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('enquiry_workers_organization_id_foreign');
+   28  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('enquiry_workers_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_exam_fine_vouchers_table.php:
+   19  			$table->integer('exam_fine_id')->unsigned()->nullable()->index('exam_fine_vouchers_exam_fine_id_foreign');
+   20  			$table->string('voucher_code', 191)->nullable();
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('exam_fine_vouchers_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('exam_fine_vouchers_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_exam_fines_table.php:
+   31  			$table->date('due_date')->nullable();
+   32  			$table->date('paid_date')->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->integer('exam_fine_voucher_id')->unsigned()->nullable()->index('exam_fines_exam_fine_voucher_id_foreign');
+   35  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('exam_fines_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_exam_types_table.php:
+   18  			$table->increments('id');
+   19  			$table->string('exam_type', 191)->nullable();
+   20: 			$table->timestamps(10);
+   21  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('exam_types_organization_id_foreign');
+   22  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('exam_types_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_factory_death_manager_detail_contacts_table.php:
+   20  			$table->string('serial_no', 191)->nullable();
+   21  			$table->string('contact_number', 191)->nullable();
+   22: 			$table->timestamps(10);
+   23  			$table->string('manager_contact_relationship', 191)->nullable();
+   24  			$table->string('manager_specify_relationship', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_factory_death_manager_details_table.php:
+   29  			$table->string('form_attested_by_dol_sign', 191)->nullable();
+   30  			$table->string('form_attested_by_dol_stamp', 191)->nullable();
+   31: 			$table->timestamps(10);
+   32  		});
+   33  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_factory_details_table.php:
+   27  			$table->string('signature_of_worker', 191)->nullable();
+   28  			$table->date('date_of_submission')->nullable();
+   29: 			$table->timestamps(10);
+   30  		});
+   31  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fee_fine_vouchers_table.php:
+   19  			$table->integer('fee_fine_id')->unsigned()->nullable()->index('fee_fine_vouchers_fee_fine_id_foreign');
+   20  			$table->string('voucher_code', 191)->nullable();
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('fee_fine_vouchers_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('fee_fine_vouchers_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fee_fines_table.php:
+   29  			$table->date('due_date')->nullable();
+   30  			$table->date('paid_date')->nullable();
+   31: 			$table->timestamps(10);
+   32  			$table->integer('fee_voucher_id')->unsigned()->nullable()->index('fee_fines_fee_voucher_id_foreign');
+   33  			$table->integer('academic_history_id')->unsigned()->nullable()->index('fee_fines_academic_history_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fee_package_installments_table.php:
+   33  			$table->string('remarks', 191)->nullable();
+   34  			$table->string('voucher_code', 191)->nullable();
+   35: 			$table->timestamps(10);
+   36  			$table->softDeletes();
+   37  			$table->integer('voucher_id')->unsigned()->nullable()->index('fee_package_installments_voucher_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fee_package_other_charges_table.php:
+   21  			$table->integer('amount')->nullable();
+   22  			$table->string('reason', 191)->nullable();
+   23: 			$table->timestamps(10);
+   24  			$table->softDeletes();
+   25  			$table->integer('fee_package_installment_id')->unsigned()->nullable()->index('fee_package_other_charges_fee_package_installment_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fee_packages_table.php:
+   27  			$table->string('status_name', 191)->nullable();
+   28  			$table->string('voucher_code', 191)->nullable();
+   29: 			$table->timestamps(10);
+   30  			$table->softDeletes();
+   31  			$table->integer('voucher_id')->unsigned()->nullable()->index('fee_packages_voucher_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fee_vouchers_table.php:
+   20  			$table->integer('package_id')->unsigned()->nullable()->index('fee_vouchers_package_id_foreign');
+   21  			$table->integer('installment_id')->unsigned()->nullable()->index('fee_vouchers_installment_id_foreign');
+   22: 			$table->timestamps(10);
+   23  			$table->softDeletes();
+   24  			$table->integer('fine_id')->unsigned()->nullable()->index('fee_vouchers_fine_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fifth_semester_details_table.php:
+   31  			$table->string('amount', 191)->nullable();
+   32  			$table->string('roll_no', 191)->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->string('readmissionfifth', 191)->nullable();
+   35  			$table->string('same_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fifth_semester_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fines_table.php:
+   26  			$table->integer('course_id')->unsigned()->nullable()->index('fines_course_id_foreign');
+   27  			$table->integer('student_id')->unsigned()->nullable()->index('fines_student_id_foreign');
+   28: 			$table->timestamps(10);
+   29  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('fines_organization_id_foreign');
+   30  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('fines_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_first_annual_details_table.php:
+   24  			$table->string('same_course', 191)->nullable();
+   25  			$table->string('changed_course', 191)->nullable();
+   26: 			$table->timestamps(10);
+   27  			$table->string('readmission', 191)->nullable();
+   28  		});
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_first_annual_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_first_semester_details_table.php:
+   24  			$table->string('amount', 191)->nullable();
+   25  			$table->string('roll_no', 191)->nullable();
+   26: 			$table->timestamps(10);
+   27  			$table->string('readmissionfirst', 191)->nullable();
+   28  			$table->string('same_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_first_semester_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fourth_semester_details_table.php:
+   31  			$table->string('amount', 191)->nullable();
+   32  			$table->string('roll_no', 191)->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->string('readmissionfourth', 191)->nullable();
+   35  			$table->string('same_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_fourth_semester_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_head_fine_students_table.php:
+   23  			$table->string('status_name', 191)->nullable();
+   24  			$table->integer('status_id')->unsigned()->nullable();
+   25: 			$table->timestamps(10);
+   26  			$table->string('voucher_code', 191)->nullable();
+   27  			$table->string('due_date', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_head_fines_table.php:
+   19  			$table->string('name', 191)->nullable();
+   20  			$table->integer('amount')->nullable();
+   21: 			$table->timestamps(10);
+   22  			$table->string('vendor_share_amount', 191)->nullable();
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('head_fines_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_ims_details_table.php:
+   34  			$table->string('ims_late_fee', 191)->nullable();
+   35  			$table->string('ims_total_fee', 191)->nullable();
+   36: 			$table->timestamps(10);
+   37  			$table->string('ims_board_university', 191)->nullable();
+   38  			$table->string('ims_previous_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_index_tables_table.php:
+   36  			$table->boolean('admitted')->default(0);
+   37  			$table->integer('admission_id')->unsigned()->nullable()->index('index_tables_admission_id_foreign');
+   38: 			$table->timestamps(10);
+   39  			$table->string('course_name', 191)->nullable();
+   40  			$table->string('course_enrolled_id', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_job_titles_table.php:
+   20  			$table->string('name', 191)->nullable();
+   21  			$table->string('description', 191)->nullable();
+   22: 			$table->timestamps(10);
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('job_titles_organization_id_foreign');
+   24  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('job_titles_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_lecture_attendances_table.php:
+   22  			$table->integer('subject_id')->unsigned()->nullable()->index('lecture_attendances_subject_id_foreign');
+   23  			$table->integer('student_id')->unsigned()->nullable()->index('lecture_attendances_student_id_foreign');
+   24: 			$table->timestamps(10);
+   25  			$table->date('date')->nullable();
+   26  			$table->integer('session_id')->unsigned()->nullable()->index('lecture_attendances_session_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_notice_boards_table.php:
+   19  			$table->string('title', 191)->nullable();
+   20  			$table->string('description', 191)->nullable();
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('notice_boards_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('notice_boards_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_organization_campus_wings_table.php:
+   19  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('organization_campus_wings_organization_campus_id_foreign');
+   20  			$table->bigInteger('wing_id')->unsigned()->nullable()->index('organization_campus_wings_wing_id_foreign');
+   21: 			$table->timestamps(10);
+   22  		});
+   23  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_organization_campuses_table.php:
+   23  			$table->integer('old_organization_id')->nullable();
+   24  			$table->text('address')->nullable();
+   25: 			$table->timestamps(10);
+   26  		});
+   27  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_organizations_table.php:
+   20  			$table->string('short_name', 191)->nullable();
+   21  			$table->text('description')->nullable();
+   22: 			$table->timestamps(10);
+   23  		});
+   24  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_permissions_table.php:
+   21  			$table->string('module_name', 191);
+   22  			$table->string('guard_name', 191);
+   23: 			$table->timestamps(10);
+   24  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('permissions_organization_id_foreign');
+   25  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('permissions_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_provisional_claim_details_table.php:
+   22  			$table->date('scrutiny_committee')->nullable();
+   23  			$table->string('bactch_number', 191)->nullable();
+   24: 			$table->timestamps(10);
+   25  		});
+   26  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_provisional_claims_table.php:
+   28  			$table->string('cfe_fee', 191)->nullable();
+   29  			$table->string('recovery_from_student', 191)->nullable();
+   30: 			$table->timestamps(10);
+   31  		});
+   32  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_reference_enquiries_table.php:
+   19  			$table->integer('reference_id')->unsigned()->index('reference_enquiries_reference_id_foreign');
+   20  			$table->integer('enquiry_id')->unsigned()->index('reference_enquiries_enquiry_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->softDeletes();
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('reference_enquiries_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_references_table.php:
+   18  			$table->increments('id');
+   19  			$table->string('name', 191)->default('');
+   20: 			$table->timestamps(10);
+   21  			$table->softDeletes();
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('references_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_roles_table.php:
+   20  			$table->string('display_name', 191);
+   21  			$table->string('guard_name', 191);
+   22: 			$table->timestamps(10);
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('roles_organization_id_foreign');
+   24  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('roles_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_rooms_facilities_table.php:
+   19  			$table->bigInteger('room_id')->nullable();
+   20  			$table->bigInteger('facility_id')->nullable();
+   21: 			$table->timestamps(10);
+   22  		});
+   23  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_rooms_table.php:
+   18  			$table->increments('id');
+   19  			$table->string('name', 191)->nullable();
+   20: 			$table->timestamps(10);
+   21  			$table->integer('sitting_capacity')->nullable();
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('rooms_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_second_annual_part_details_table.php:
+   32  			$table->string('exam_amount', 191)->nullable();
+   33  			$table->string('roll_no', 191)->nullable();
+   34: 			$table->timestamps(10);
+   35  			$table->string('readmissionparttwo', 191)->nullable();
+   36  			$table->string('same_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_second_annual_part_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_second_semester_details_table.php:
+   31  			$table->string('amount', 191)->nullable();
+   32  			$table->string('roll_no', 191)->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->string('readmissionsecond', 191)->nullable();
+   35  			$table->string('same_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_second_semester_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_section_details_table.php:
+   21  			$table->integer('section_strength')->nullable();
+   22  			$table->integer('section_id')->unsigned()->nullable()->index('section_details_section_id_foreign');
+   23: 			$table->timestamps(10);
+   24  		});
+   25  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_section_subject_details_table.php:
+   23  			$table->bigInteger('academic_wing_id')->unsigned()->nullable()->index('section_subject_details_academic_wing_id_foreign');
+   24  			$table->integer('session_id')->unsigned()->nullable()->index('section_subject_details_session_id_foreign');
+   25: 			$table->timestamps(10);
+   26  			$table->bigInteger('section_detail_id')->unsigned()->nullable()->index('section_subject_details_section_detail_id_foreign');
+   27  		});
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_section_teachers_table.php:
+   21  			$table->bigInteger('type')->nullable();
+   22  			$table->integer('section_id')->unsigned()->nullable()->index('section_teachers_section_id_foreign');
+   23: 			$table->timestamps(10);
+   24  			$table->bigInteger('section_detail_id')->unsigned()->index('section_teachers_section_detail_id_foreign');
+   25  			$table->bigInteger('section_subject_detail_id')->unsigned()->index('section_teachers_section_subject_detail_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_sections_table.php:
+   17  		{
+   18  			$table->increments('id');
+   19: 			$table->timestamps(10);
+   20  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('sections_organization_id_foreign');
+   21  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('sections_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_semesters_table.php:
+   20  			$table->integer('course_id')->unsigned()->nullable()->index('semesters_course_id_foreign');
+   21  			$table->integer('session_id')->unsigned()->nullable()->index('semesters_session_id_foreign');
+   22: 			$table->timestamps(10);
+   23  			$table->integer('min_discount')->nullable();
+   24  			$table->integer('max_discount')->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_service_details_table.php:
+   28  			$table->string('attested_by_dol', 191)->nullable();
+   29  			$table->string('attested_by_director', 191)->nullable();
+   30: 			$table->timestamps(10);
+   31  			$table->string('worker_eligibliity_follow_up', 191)->nullable();
+   32  		});
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_session_course_subjects_table.php:
+   23  			$table->integer('subject_id')->unsigned()->index('session_course_subjects_subject_id_foreign');
+   24  			$table->string('subject_name', 191);
+   25: 			$table->timestamps(10);
+   26  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('session_course_subjects_organization_campus_id_foreign');
+   27  			$table->bigInteger('wing_id')->unsigned()->nullable()->index('session_course_subjects_wing_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_session_courses_table.php:
+   19  			$table->integer('session_id')->unsigned()->index();
+   20  			$table->integer('course_id')->unsigned()->nullable()->index();
+   21: 			$table->timestamps(10);
+   22  			$table->softDeletes();
+   23  			$table->integer('academic_term_id')->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_sessions_table.php:
+   18  			$table->increments('id');
+   19  			$table->string('session_name', 191)->nullable();
+   20: 			$table->timestamps(10);
+   21  			$table->softDeletes();
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('sessions_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_seventh_semester_details_table.php:
+   31  			$table->string('amount', 191)->nullable();
+   32  			$table->string('roll_no', 191)->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->string('readmissionseven', 191)->nullable();
+   35  			$table->string('same_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_seventh_semester_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_shift_dates_table.php:
+   19  			$table->date('date')->nullable();
+   20  			$table->integer('shift_id')->unsigned()->nullable()->index('shift_dates_shift_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('shift_dates_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('shift_dates_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_shift_swaps_table.php:
+   19  			$table->integer('shift_id')->unsigned()->nullable()->index('shift_swaps_shift_id_foreign');
+   20  			$table->integer('shift_user_id')->unsigned()->nullable()->index('shift_swaps_shift_user_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('shift_swaps_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('shift_swaps_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_shift_users_table.php:
+   21  			$table->boolean('is_shift_active')->nullable();
+   22  			$table->boolean('has_shift_swap')->nullable();
+   23: 			$table->timestamps(10);
+   24  			$table->integer('shift_swap_id')->unsigned()->nullable()->index('shift_users_shift_swap_id_foreign');
+   25  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('shift_users_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_shift_working_days_table.php:
+   20  			$table->integer('week_day_id')->nullable();
+   21  			$table->string('week_day', 191)->nullable();
+   22: 			$table->timestamps(10);
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('shift_working_days_organization_id_foreign');
+   24  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('shift_working_days_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_shifts_table.php:
+   20  			$table->integer('time_slot_id')->unsigned()->nullable()->index('shifts_time_slot_id_foreign');
+   21  			$table->boolean('is_active')->nullable();
+   22: 			$table->timestamps(10);
+   23  			$table->softDeletes();
+   24  			$table->boolean('has_shift_swap')->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_sixth_semester_details_table.php:
+   31  			$table->string('amount', 191)->nullable();
+   32  			$table->string('roll_no', 191)->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->string('readmissionsix', 191)->nullable();
+   35  			$table->string('same_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_sixth_semester_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_academic_histories_table.php:
+   23  			$table->boolean('is_promoted')->nullable();
+   24  			$table->integer('student_id')->unsigned()->nullable()->index('student_academic_histories_student_id_foreign');
+   25: 			$table->timestamps(10);
+   26  			$table->string('semester', 191)->nullable();
+   27  			$table->integer('semester_id')->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_attachments_table.php:
+   23  			$table->string('attachment_from', 191)->nullable();
+   24  			$table->integer('attachment_for')->unsigned()->nullable()->index('student_attachments_attachment_for_foreign');
+   25: 			$table->timestamps(10);
+   26  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('student_attachments_organization_id_foreign');
+   27  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('student_attachments_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_attendance_details_table.php:
+   21  			$table->bigInteger('status_id')->nullable();
+   22  			$table->string('status_type', 191)->nullable();
+   23: 			$table->timestamps(10);
+   24  		});
+   25  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_attendance_policies_table.php:
+   26  			$table->string('leave_quota', 191)->nullable();
+   27  			$table->string('apply_absent', 191)->nullable();
+   28: 			$table->timestamps(10);
+   29  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('student_attendance_policies_organization_campus_id_foreign');
+   30  		});
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_attendance_policy_details_table.php:
+   20  			$table->string('struck_off_limit', 191)->nullable();
+   21  			$table->string('credit_hour', 191)->nullable();
+   22: 			$table->timestamps(10);
+   23  		});
+   24  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_attendances_table.php:
+   22  			$table->dateTime('date_time')->nullable();
+   23  			$table->string('title', 191)->nullable();
+   24: 			$table->timestamps(10);
+   25  			$table->bigInteger('section_detail_id')->unsigned()->nullable()->index('student_attendances_section_detail_id_foreign');
+   26  			$table->bigInteger('section_subject_detail_id')->unsigned()->nullable()->index('student_attendances_section_subject_detail_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_books_table.php:
+   19  			$table->string('subject_name', 191)->nullable();
+   20  			$table->integer('student_academic_history_id')->unsigned()->nullable()->index('student_books_student_academic_history_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->integer('subject_id')->nullable();
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('student_books_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_contact_information_table.php:
+   23  			$table->string('contact_type_name', 191)->default('');
+   24  			$table->string('contact_type_other_name', 191)->nullable();
+   25: 			$table->timestamps(10);
+   26  		});
+   27  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_contact_numbers_table.php:
+   22  			$table->string('specify_relationship', 191)->nullable();
+   23  			$table->string('contact_no', 191)->nullable();
+   24: 			$table->timestamps(10);
+   25  		});
+   26  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_installment_plans_table.php:
+   22  			$table->integer('no_of_installments')->nullable();
+   23  			$table->integer('approval_by_id')->unsigned()->nullable()->index('student_installment_plans_approval_by_id_foreign');
+   24: 			$table->timestamps(10);
+   25  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('student_installment_plans_organization_id_foreign');
+   26  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('student_installment_plans_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_personal_details_table.php:
+   29  			$table->string('email', 191)->nullable();
+   30  			$table->string('signature', 191)->nullable();
+   31: 			$table->timestamps(10);
+   32  		});
+   33  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_registrations_table.php:
+   28  			$table->string('registration_no', 191)->nullable();
+   29  			$table->integer('registration_card_received_id')->nullable();
+   30: 			$table->timestamps(10);
+   31  		});
+   32  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_student_workers_table.php:
+   22  			$table->boolean('file_delivered_to_board')->nullable();
+   23  			$table->boolean('payment_received')->nullable();
+   24: 			$table->timestamps(10);
+   25  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('student_workers_organization_id_foreign');
+   26  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('student_workers_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_students_table.php:
+   39  			$table->integer('session_id')->unsigned()->index();
+   40  			$table->integer('course_id')->unsigned()->index('students_course_id_foreign');
+   41: 			$table->timestamps(10);
+   42  			$table->softDeletes();
+   43  			$table->string('qr_code_name', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_subjects_table.php:
+   18  			$table->increments('id');
+   19  			$table->string('name', 191)->nullable()->unique();
+   20: 			$table->timestamps(10);
+   21  			$table->string('code', 191)->nullable();
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('subjects_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_system_roll_numbers_old_table.php:
+   29  			$table->string('session_name', 191)->nullable();
+   30  			$table->boolean('is_assigned')->nullable();
+   31: 			$table->timestamps(10);
+   32  			$table->softDeletes();
+   33  			$table->integer('generated_at_length')->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_system_roll_numbers_table.php:
+   29  			$table->string('session_name', 191)->nullable();
+   30  			$table->boolean('is_assigned')->nullable();
+   31: 			$table->timestamps(10);
+   32  			$table->softDeletes();
+   33  			$table->integer('generated_at_length')->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_teacher_subjects_table.php:
+   19  			$table->integer('user_id')->unsigned()->nullable()->index('teacher_subjects_user_id_foreign');
+   20  			$table->integer('subject_id')->unsigned()->nullable()->index('teacher_subjects_subject_id_foreign');
+   21: 			$table->timestamps(10);
+   22  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('teacher_subjects_organization_id_foreign');
+   23  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('teacher_subjects_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_third_semester_details_table.php:
+   31  			$table->string('amount', 191)->nullable();
+   32  			$table->string('roll_no', 191)->nullable();
+   33: 			$table->timestamps(10);
+   34  			$table->string('readmissionthird', 191)->nullable();
+   35  			$table->string('same_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_third_semester_result_status_details_table.php:
+   24  			$table->date('last_chance_date')->nullable();
+   25  			$table->date('passing_date')->nullable();
+   26: 			$table->timestamps(10);
+   27  		});
+   28  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_time_period_subject_week_days_table.php:
+   20  			$table->integer('week_day_id')->unsigned()->nullable();
+   21  			$table->string('week_day_name', 191)->nullable();
+   22: 			$table->timestamps(10);
+   23  			$table->softDeletes();
+   24  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('time_period_subject_week_days_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_time_periods_table.php:
+   21  			$table->integer('subject_id')->unsigned()->nullable()->index('time_periods_subject_id_foreign');
+   22  			$table->softDeletes();
+   23: 			$table->timestamps(10);
+   24  			$table->integer('time_slot_id')->unsigned()->nullable()->index('time_periods_time_slot_id_foreign');
+   25  			$table->integer('room_id')->unsigned()->nullable()->index('time_periods_room_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_time_slots_table.php:
+   24  			$table->string('slot_type_id', 191)->nullable();
+   25  			$table->string('slot_type_name', 191)->nullable();
+   26: 			$table->timestamps(10);
+   27  			$table->softDeletes();
+   28  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('time_slots_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_transport_hostel_details_table.php:
+   25  			$table->string('manager_name', 191)->nullable();
+   26  			$table->string('manager_contact', 191)->nullable();
+   27: 			$table->timestamps(10);
+   28  		});
+   29  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_user_allowed_sessions_table.php:
+   20  			$table->integer('session_id')->unsigned()->nullable()->index('user_allowed_sessions_session_id_foreign');
+   21  			$table->boolean('is_active')->default(1);
+   22: 			$table->timestamps(10);
+   23  		});
+   24  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_user_campus_details_table.php:
+   25  			$table->integer('role_id')->unsigned()->nullable()->index('user_campus_details_role_id_foreign');
+   26  			$table->boolean('is_working')->default(1);
+   27: 			$table->timestamps(10);
+   28  			$table->string('emp_code', 191)->nullable()->unique();
+   29  			$table->boolean('is_primary_emp_code')->default(0);
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_user_designations_table.php:
+   21  			$table->string('user_name', 191);
+   22  			$table->string('designation_name', 191);
+   23: 			$table->timestamps(10);
+   24  			$table->softDeletes();
+   25  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('user_designations_organization_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_users_table.php:
+   24  			$table->string('profile_pic_url', 191)->nullable();
+   25  			$table->string('remember_token', 100)->nullable();
+   26: 			$table->timestamps(10);
+   27  			$table->string('d_o_b', 191)->nullable();
+   28  			$table->string('mobile_no', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_vti_details_table.php:
+   38  			$table->string('vti_registration_late_fee', 191)->nullable();
+   39  			$table->string('vti_registration_total_fee', 191)->nullable();
+   40: 			$table->timestamps(10);
+   41  			$table->string('vti_board_university', 191)->nullable();
+   42  			$table->string('vti_previous_course', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_wings_table.php:
+   20  			$table->string('short_name', 191)->nullable();
+   21  			$table->text('description')->nullable();
+   22: 			$table->timestamps(10);
+   23  			$table->bigInteger('organization_id')->unsigned()->nullable()->index('wings_organization_id_foreign');
+   24  			$table->bigInteger('organization_campus_id')->unsigned()->nullable()->index('wings_organization_campus_id_foreign');
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_worker_bank_security_details_table.php:
+   29  			$table->string('permanent_address', 191)->nullable();
+   30  			$table->string('temporary_address', 191)->nullable();
+   31: 			$table->timestamps(10);
+   32  		});
+   33  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_worker_contact_numbers_table.php:
+   22  			$table->string('specify_relationship_2', 191)->nullable();
+   23  			$table->string('contact_no', 191)->nullable();
+   24: 			$table->timestamps(10);
+   25  		});
+   26  	}
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_worker_family_member_details_table.php:
+   26  			$table->string('file_received_status', 191)->nullable();
+   27  			$table->date('follow_up')->nullable();
+   28: 			$table->timestamps(10);
+   29  			$table->string('follow_up_status', 191)->nullable();
+   30  			$table->integer('family_id')->unsigned()->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_worker_followups_calls_table.php:
+   27  			$table->string('nextfollowupdate', 191)->nullable();
+   28  			$table->string('remarks', 191)->nullable();
+   29: 			$table->timestamps(10);
+   30  			$table->string('session_id', 191)->nullable();
+   31  			$table->string('organization_campus_id', 191)->nullable();
+
+C:\xampp\htdocs\lr_property\database\migrations\2022_02_25_133902_create_worker_personal_details_table.php:
+   34  			$table->string('factory_card', 191)->nullable();
+   35  			$table->string('service_letter', 191)->nullable();
+   36: 			$table->timestamps(10);
+   37  		});
+   38  	}
+
+Cancelled!
+150 matches across 150 files

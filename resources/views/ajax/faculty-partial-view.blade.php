@@ -1,0 +1,2 @@
+{!! Form::label('user', 'Faculty:') !!}
+                {!! Form::select('user_id', $users, null, ['id' => 'user_id', 'class' => 'form-control select2-multiple', 'placeholder' => 'Please Select', 'required' => 'required']) !!}

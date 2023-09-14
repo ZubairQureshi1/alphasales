@@ -1,0 +1,47 @@
+
+@if(count($data)!=0)
+    <div class="row">
+        @foreach ($data as $index => $admission)
+             
+            <div class="col-sm-12 col-md-6 col-lg-3 m-b-15">
+                <div class="card analogy-card analogy-data-card-shadow-top m-b-5">
+                        <div class="bg_blue text-center">
+                            <div class="p-1">
+                                <p class="text-white m-0">{{ !is_null($admission->student_category_id) ? config('constants.student_categories')[$admission->student_category_id] : '---' }}</p>
+                            </div>
+                        </div>
+                    <div class="card-body p-t-10">
+                        <div class="text-center">
+                            <img class="m-t-10 rounded-circle thumb-lg" src="{{ $admission->picture_pic_directory_url!=''?$admission->picture_pic_directory_url: 'assets/images/users/dummy.png'}}" alt="Generic placeholder image">
+                            <div class="media-body m-t-10  border_top_content analogy-card-content-left-border">
+                                <h5 class="m-t-10 font-18 mb-1" style="text-transform: uppercase;letter-spacing: 1px;text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" id="student_name">{{ $admission->student_name }}</h5>
+                                <p class="text-muted m-0 font-secondary"  id="roll_no"><i><b>Roll No: </b></i>{{ $admission->roll_no }}</p>
+                                <p class="text-muted m-0 font-secondary"  id="old_roll_no"><i><b>Old Roll No: </b></i> {{ $admission->old_roll_no }}</p>
+                                <p class="text-muted m-0 font-secondary"  id="course_name"><i><b>Course: </b>({{ $admission->course_name }})</i></p>
+                                <p class="text-muted m-0 font-secondary"  id="section_name"><i><b>Section: </b>({{ $admission->section_name }})</i></p>
+                                <p class="text-muted m-0 font-secondary"><i><b>Email: </b>{{ $admission->email==null?'---':$admission->email }}</i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card analogy-card analogy-data-card-shadow-bottom">
+                    <div class="card-body m-0 padding-5">
+                        <ul class="social-links m-0 text-center list-inline">
+                             
+                            <li class="list-inline-item">
+                                {!! Form::open(['route' => ['admissions.destroy', $admission->id], 'method' => 'delete']) !!}
+                                    {!! Form::button('<i class="mdi mdi-delete"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm']) !!}
+                                {!! Form::close() !!}
+                            </li>
+                            <!-- <li class="list-inline-item">
+                            <a href=""><button class="btn btn-success btn-sm"><i class="mdi mdi-paperclip"></i></button></a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        @endforeach    
+    </div>
+@else
+    @include('includes/not_found')
+@endif

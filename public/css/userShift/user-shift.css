@@ -1,0 +1,5 @@
+.fc-event .fc-bg {
+    z-index: 1;
+    background: none !important;
+    opacity: .25;
+}

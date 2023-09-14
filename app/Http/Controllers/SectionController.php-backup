@@ -1,0 +1,150 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Alertify;
+use App\Models\Course;
+use App\Models\Section;
+use App\Models\SectionCourse;
+use Flash;
+use Globals;
+use Illuminate\Http\Request;
+
+class SectionController extends Controller
+{
+
+    public function index(Request $request)
+    {
+        $sections = Section::get();
+        $courses = Course::get()->pluck('name', 'id');
+        $section_keys = [];
+        if (count($sections->toArray()) != 0) {
+            for ($i = 0; $i < sizeof($sections->toArray()); $i++) {
+                $sections->toArray()[$i]['replaced_name'] = Globals::replaceSpecialChar($sections->toArray()[$i]['name']);
+            };
+            $section_keys = array_keys($sections->toArray()[0]);
+        }
+        // dd($section_keys);
+        return view('sections.index')
+            ->with('sections', $sections)->with(['courses' => $courses, 'section_keys' => $section_keys, 'is_edit_mode' => false]);
+    }
+
+    public function create()
+    {
+        return view('sections.index')->with('courses', $courses);
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            \DB::beginTransaction();
+            $input = $request->all();
+            $section = new Section;
+            $section->name = $input['name'];
+            $section->code = $input['code'];
+            $section->save();
+            foreach ($input['courses'] as $key => $course) {
+                $sectionCourse = new SectionCourse();
+                $sectionCourse->section_id = $section->id;
+                $sectionCourse->course_id = $course;
+                $sectionCourse->save();
+            }
+            Alertify::success('Section saved successfully.');
+            \DB::commit();
+            return redirect(route('sections.index'));
+        } catch (\Exception $e) {
+            \DB::rollback();
+        }
+    }
+
+    public function edit($id)
+    {
+        $section = Section::find($id);
+        $courses = Course::get()->pluck('name', 'id');
+        $section_courses = SectionCourse::where('section_id', '=', $section->id)->get();
+        if ($section) {
+            return view('sections.index')->with('courses', $courses)->with('section', $section)->with('is_edit_mode', true)->with('section_courses', $section_courses);
+        } else {
+            Flash::error('Something went wrong while adding section.');
+        }
+
+        return redirect(route('sections.index'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $input = $request->all();
+        $section = Section::find($id);
+        $section->name = $input['name'];
+        $section->code = $input['code'];
+        $section->update();
+
+        $section_courses = $section->sectionCourses;
+
+        $section_courses_array = [];
+        $count = 0;
+
+        foreach ($section_courses as $section_course) {
+            $section_courses_array[$count] = $section_course['course_id'];
+            $count++;
+
+        }
+
+        if (!empty($input['courses'])) {
+            $courses_to_add = array_diff($input['courses'], $section_courses_array);
+        }
+
+        if (!empty($courses_to_add)) {
+            foreach ($courses_to_add as $key => $item) {
+                $course_id = $item;
+                $sectionCourse = new SectionCourse();
+                $sectionCourse->section_id = $section->id;
+                $sectionCourse->course_id = $course_id;
+                $sectionCourse->save();
+            }
+
+        }
+        $courses_to_delete = array_diff($section_courses_array, $input['courses']);
+        if (!empty($courses_to_delete)) {
+            foreach ($courses_to_delete as $item) {
+                $course_object = SectionCourse::where('section_id', '=', $section->id)->where('course_id', '=', $item)->get()->first();
+                if (!empty($course_object)) {
+                    $course_object->delete();
+                    //dd($subject_object);
+                }
+
+            }
+        }
+
+        $sectionStudents = $section->students()->get();
+        foreach ($sectionStudents as $key => $student) {
+            $student->section_name = $section->name;
+            $student->update();
+        }
+        if ($section) {
+            Flash::success('section details updated successfully.');
+        } else {
+            Flash::error('Something went wrong while adding section.');
+        }
+
+        return redirect(route('sections.index'));
+    }
+
+    public function destroy($id)
+    {
+        $section = Section::find($id);
+
+        if (empty($section)) {
+            Flash::error('section not found');
+
+            return redirect(route('sections.index'));
+        }
+
+        $section->delete();
+
+        Flash::success('sections deleted successfully.');
+
+        return redirect(route('sections.index'));
+    }
+
+}

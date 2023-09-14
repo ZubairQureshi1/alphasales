@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddColIsWeekendOffToUsershifts extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('shift_users', function (Blueprint $table) {
+            $table->boolean('is_weekend_off')->default('0');
+            $table->date('weekend_off_start_from')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('shift_users', function (Blueprint $table) {
+            $table->dropColumn('is_weekend_off');
+            $table->dropColumn('weekend_off_start_from');
+        });
+    }
+}

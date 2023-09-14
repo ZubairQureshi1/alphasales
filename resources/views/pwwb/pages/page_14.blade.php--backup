@@ -1,0 +1,499 @@
+<style type="text/css">
+    label{
+        font-weight: bold;
+        color: black;
+        font-family: 'Balsamiq Sans', cursive;
+    }
+    h1{
+        font-weight: bold;
+        text-align: center;
+        font-family: 'Balsamiq Sans', cursive;
+        background: #17202A;
+        color: white;
+        padding: 15px;
+        position: relative;
+        top: -20px;
+    }
+    input{
+        text-transform: capitalize;
+    }
+</style>
+<div id="page_14">
+    <h1>Provisional Letter Status / Claim Status<span class="float-right">Page # 10</span></h1><br>
+    <form id="page_14_form">
+        <div class="card shadow p-3 w-100">
+            <div class="card-body ">
+                <div class="form-row">
+                    <div class="form-group  col-md-4">
+                        <label>Status:<span style="color: red;">*</span></label>
+                        <select id="status_page10" onchange="setStatusDateDisplay()" name="status" class="form-control">
+                            <option value="" selected>--select--</option>
+                            @foreach(\Config::get('constants.status') as $key => $value)
+                                <option value="{{$key}}" {{ $data ? $data['provisional_claim_details']['status'] == $key ? 'selected' : '' : ''}}>{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3" id="status_div_page10" style="display: none">
+                        <label>Date:<span style="color: red;">*</span></label>
+                        <input type="text" id="provisional_issued_1" class="form-control text-center datepicker" name="provisional_letter_date" placeholder="Enter Date"
+                        value="{{$data && $data['provisional_claim_details']['provisional_letter_date']? date('d/m/Y',strtotime($data['provisional_claim_details']['provisional_letter_date'])) : ''}}">
+                    </div>
+                    <div class="form-group  col-md-4">
+                        <label>Scrutiny Committee  meeting date:<span style="color: red;">*</span></label>
+                        <input type="text" id="scrutiny_committee" class="form-control text-center datepicker" name="scrutiny_committee" placeholder="Enter Scrutiny Committee  meating date"
+                               value="{{$data && $data['provisional_claim_details']['scrutiny_committee']? date('d/m/Y',strtotime($data['provisional_claim_details']['scrutiny_committee'])) : ''}}">
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group  col-md-4">
+                    <label>Batch number:<span style="color: red;">*</span></label>
+                    <input type="text" id="bactch_number" class="form-control text-center" name="bactch_number" placeholder="Enter Batch Number"
+                           value="{{$data && $data['provisional_claim_details']['bactch_number']? $data['provisional_claim_details']['bactch_number'] : ''}}">
+                </div>
+                </div>
+            </div>
+        </div>
+        {{--Claim Duplication--}}
+
+        <div style="margin-top: 50px;" class="card shadow p-3 w-100">
+            <div class="card-body" id="provisional_letter_parent">
+                <div class="form-row">
+                            <div class="">
+                                <label style="font-size: 20px;">Claim From PWWB:</label>
+                            </div>
+                            <div class="float-right ml-auto">
+                                <button type="button" class="btn btn-primary float-right" onclick="cloneProvisionalLetter()">+ Add Details</button>
+                            </div>
+                        </div><br>
+                        @if($data && isset($data['provisional_claims']) && count($data['provisional_claims']))
+                            @foreach($data['provisional_claims'] as $claims)
+                                <div class="form-row" id="provisional_letter">
+                                    <div class="form-group col-md-2">
+                                          <label>Serial No.:<span style="color: red;">*</span></label>
+                                        <input readonly id="provisional_letter_serial_no" type="text" class="form-control rounded-0 text-center" name="serial_no[]" placeholder="1" value="{{$claims['serial_no']}}">
+                                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Amount of Claim Due:<span style="color: red;">*</span></label>
+                        <input onkeyup="numericOnly(event)" type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control text-center" name="claim_due[]" placeholder="Enter Claim Due"
+                        value="{{$claims['claim_due']}}">
+                   </div>
+                    <div class="form-group col-md-3" id="type_of_claim">
+                        <label>Type Of Claim:<span style="color: red;">*</span></label>
+                        <select onchange="setClaimOthersField(event)" id="type_of_claim_page14" name="type_of_claim[]" class="form-control">
+                            <option value="" selected>--select--</option>
+                             @foreach(\Config::get('constants.claim_fee_type') as $key => $value)
+                                <option value="{{$key}}" {{ $claims ? $claims['type_of_claim'] == $key ? 'selected' : '' : ''}}>{{$value}}</option>
+                                @endforeach
+                        </select>
+                    </div>
+                    <div id="type_of_claim_other" class="form-group col-md-3" style="display: none;">
+                        <label>Claim Type:<span style="color: red;">*</span></label>
+                        <input onkeypress="return lettersOnly(event)" type="text" id="provisional_claim_type_01" class="form-control text-center" name="type_of_claim_other[]" placeholder="Specify Claim Type"
+                        value="{{$claims['type_of_claim_other']}}">
+                    </div>
+                    <div class="form-group col-md-3" id="status_of_claim_div_page14">
+                       <label>Status of Claim:<span style="color: red;">*</span></label>
+                        <select onchange="setDisplayForClaimReceivedPage14(event)" id="claim_received_page14" name="claim_status[]" class="form-control">
+                            <option value="" selected>--select--</option>
+                            @foreach(\Config::get('constants.claim_status') as $key => $value)
+                                <option value="{{$key}}" {{ $claims ? $claims['claim_status'] == $key ? 'selected' : '' : ''}}>{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div id="amount_page14" class="form-group col-md-3" style="display: none">
+                        <label>Amount of Claim Received:<span style="color: red;">*</span></label>
+                        <input onkeyup="numericOnly(event)" type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control text-center" name="claim_received[]" id="provisional_amount_1" placeholder="Enter Claim Received"
+                        value="{{$claims['claim_received']}}">
+                    </div>
+                                    <div id="date_page14" class="form-group col-md-3" style="display: none">
+                                        <label>Date:<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control text-center datepicker" name="claim_date[]" id="provisional_date_1" placeholder="Enter Date"
+                        value="{{$claims['claim_date']}}"></div>
+                     <div class="form-group col-md-3" id="reason_page14" style="display: none">
+                                       <label>Reason:<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control text-center" name="reason[]" id="provisional_reason_1" placeholder="Enter Reason"
+                       value="{{$claims['reason']}}" id="reason">
+                    </div>
+                     <div class="form-group col-md-3" id="fee_page14" style="display: none">
+                              <label>CFE Fee:<span style="color: red;">*</span></label>
+                        <input onkeyup="numericOnly(event)" type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control text-center" name="cfe_fee[]" id="provisional_cfe_fee" placeholder="Enter CFE Fee"
+                       value="{{$claims['cfe_fee']}}">
+                    </div>
+                    <div class="form-group  col-md-3" id="recovery_page14" style="display: none">
+                        <label>Recovery From Student:<span style="color: red;">*</span></label>
+                        <input onkeyup="numericOnly(event)" type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control text-center" name="recovery_from_student[]" id="provisional_recovery_student"
+                        placeholder="Enter Recovery from Student"
+                        value="{{$claims['recovery_from_student']}}">
+                    </div>
+                    <div class="col-md-1"><br>
+                        <button id="removeProvisionalLetterButton" type="button" class="btn btn-danger" onclick="removeProvisionalLetterField(event)"
+                        @if ($claims == reset($data['provisional_claims'])) {{'disabled'}} @endif style="margin-top: 10px;">-</button>
+                    </div>
+                </div>
+                            @endforeach
+                        @else
+                           <div class="form-row" id="provisional_letter">
+                    <div class="form-group col-md-2">
+                                     <label>Serial No.:<span style="color: red;">*</span></label>
+                                    <input readonly id="provisional_letter_serial_no" type="text" class="form-control text-center" name="serial_no[]" value="1">
+                                </div>
+                    <div class="form-group col-md-3">
+                        <label>Amount of Claim Due:<span style="color: red;">*</span></label>
+                        <input onkeyup="numericOnly(event)" type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control text-center" name="claim_due[]" placeholder="Enter Claim Due"
+                       >
+                    </div>
+                    <div class="form-group col-md-3" id="type_of_claim">
+                        <label>Type Of Claim:<span style="color: red;">*</span></label>
+                        <select onchange="setClaimOthersField(event)" id="type_of_claim_page14" name="type_of_claim[]" class="form-control">
+                            <option value="" selected>--select--</option>
+                             @foreach(\Config::get('constants.claim_fee_type') as $key => $value)
+                                <option value="{{$key}}" {{ $data ? $data['provisional_claims']['claim_fee_type'] == $key ? 'selected' : '' : ''}}>{{$value}}</option>
+                                @endforeach
+                        </select>
+                    </div>
+                    <div id="type_of_claim_other" class="form-group col-md-3" style="display: none;">
+                        <label>Claim Type:<span style="color: red;">*</span></label>
+                        <input onkeypress="return lettersOnly(event)" type="text" id="provisional_claim_type_01" class="form-control text-center" name="type_of_claim_other[]" placeholder="Specify Claim Type"
+                       >
+                    </div>
+                    <div class="form-group col-md-3" id="status_of_claim_div_page14">
+                        <label>Status of Claim:<span style="color: red;">*</span></label>
+                        <select onchange="setDisplayForClaimReceivedPage14(event)" id="claim_received_page14" name="claim_status[]" class="form-control">
+                            <option value="" selected>--select--</option>
+                            @foreach(\Config::get('constants.claim_status') as $key => $value)
+                                <option value="{{$key}}" {{ $data ? $data['provisional_claims']['claim_status'] == $key ? 'selected' : '' : ''}}>{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+
+
+
+
+                    <div id="amount_page14" class="form-group col-md-3" style="display: none">
+                        <label>Amount of Claim Received:<span style="color: red;">*</span></label>
+                        <input onkeyup="numericOnly(event)" type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control text-center" name="claim_received[]" id="provisional_amount_1" placeholder="Enter Claim Received"
+                        >
+                    </div>
+                    <div id="date_page14" class="form-group col-md-3" style="display: none">
+                        <label>Date:<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control text-center datepicker" name="claim_date[]" id="provisional_date_1" placeholder="Enter Date"
+                        >
+                    </div>
+                    <div class="form-group col-md-3" id="reason_page14" style="display: none">
+                        <label>Reason:<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control text-center" name="reason[]" id="provisional_reason_1" placeholder="Enter Reason"
+                        id="reason">
+                    </div>
+                    <div class="form-group col-md-3" id="fee_page14" style="display: none">
+                        <label>CFE Fee:<span style="color: red;">*</span></label>
+                        <input onkeyup="numericOnly(event)" type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control text-center" name="cfe_fee[]" id="provisional_cfe_fee" placeholder="Enter CFE Fee"
+                        >
+                    </div>
+                    <div class="form-group  col-md-3" id="recovery_page14" style="display: none">
+                        <label>Recovery From Student:<span style="color: red;">*</span></label>
+                        <input onkeyup="numericOnly(event)" type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control text-center" name="recovery_from_student[]" id="provisional_recovery_student"
+                        placeholder="Enter Recovery from Student"
+                        >
+                    </div>
+                    <div class="form-group col-md-1"><br>
+                        <button id="removeProvisionalLetterButton" type="button" class="btn btn-danger" disabled onclick="removeProvisionalLetterField(event)" style="margin-top: 10px;">-</button>
+                    </div>
+                </div>
+             @endif
+                </div>
+         </div>
+        {{--End Claim Duplication--}}
+    </form>
+</div>
+@section('script_page_14')
+    <script>
+         $('select[name="type_of_claim[]"').each(function (index,value) {
+            if($(value).val() == 'other')
+                $(value).parent().next().show();
+            else
+                $(value).parent().next().hide();
+        });
+          $('select[name="status"').each(function (index,value) {
+            if($(value).val() == 'issued')
+                $(value).parent().next().show();
+            else
+                $(value).parent().next().hide();
+        });
+        $('select[name="claim_status[]"').each(function (index,value) {
+            if($(value).val() == 'received'){
+                // $('#amount_page14').fadeIn();
+                // $('#date_page14').fadeIn();
+                // $('#reason_page14').fadeOut();
+                // $('#fee_page14').fadeOut();
+                // $('#recovery_page14').fadeOut();
+
+
+                $(value).parent().next($('#amount_page14')).fadeIn();
+                $(value).parent().next().next($('#date_page14')).fadeIn();
+                $(value).parent().next().next().next($('#reason_page14')).fadeOut();
+                $(value).parent().next().next().next().next($('#fee_page14')).fadeOut();
+                $(value).parent().next().next().next().next().next($('#recovery_page14')).fadeOut();
+
+
+            }
+            else if($(value).val() == 'rejected'){
+                // $('#amount_page14').fadeOut();
+                // $('#date_page14').fadeOut();
+                // $('#reason_page14').fadeIn();
+                // $('#fee_page14').fadeIn();
+                // $('#recovery_page14').fadeIn();
+
+                $(value).parent().next($('#amount_page14')).fadeOut();
+                $(value).parent().next().next($('#date_page14')).fadeOut();
+                $(value).parent().next().next().next($('#reason_page14')).fadeIn();
+                $(value).parent().next().next().next().next($('#fee_page14')).fadeIn();
+                $(value).parent().next().next().next().next().next($('#recovery_page14')).fadeIn();
+            }
+            else if($(value).val() == 'notReceived'){
+                // $('#amount_page14').fadeOut();
+                // $('#date_page14').fadeOut();
+                // $('#reason_page14').fadeIn();
+                // $('#fee_page14').fadeOut();
+                // $('#recovery_page14').fadeOut();
+
+                $(value).parent().next($('#amount_page14')).fadeOut();
+                $(value).parent().next().next($('#date_page14')).fadeOut();
+                $(value).parent().next().next().next($('#reason_page14')).fadeIn();
+                $(value).parent().next().next().next().next($('#fee_page14')).fadeOut();
+                $(value).parent().next().next().next().next().next($('#recovery_page14')).fadeOut();
+            }
+            else if($(value).val() == 'cancelled'){
+                // $('#amount_page14').fadeOut();
+                // $('#date_page14').fadeOut();
+                // $('#reason_page14').fadeIn();
+                // $('#fee_page14').fadeOut();
+                // $('#recovery_page14').fadeOut();
+
+                $(value).parent().next($('#amount_page14')).fadeOut();
+                $(value).parent().next().next($('#date_page14')).fadeOut();
+                $(value).parent().next().next().next($('#reason_page14')).fadeIn();
+                $(value).parent().next().next().next().next($('#fee_page14')).fadeOut();
+                $(value).parent().next().next().next().next().next($('#recovery_page14')).fadeOut();
+            }
+            else{
+                // $('#amount_page14').fadeOut();
+                // $('#date_page14').fadeOut();
+                // $('#reason_page14').fadeOut();
+                // $('#fee_page14').fadeOut();
+                // $('#recovery_page14').fadeOut();
+
+                $(value).parent().next($('#amount_page14')).fadeOut();
+                $(value).parent().next().next($('#date_page14')).fadeOut();
+                $(value).parent().next().next().next($('#reason_page14')).fadeOut();
+                $(value).parent().next().next().next().next($('#fee_page14')).fadeOut();
+                $(value).parent().next().next().next().next().next($('#recovery_page14')).fadeOut();
+            }
+        });
+        setDisplayForClaimReceivedPage14();
+        setStatusDateDisplay();
+        setClaimOthersField();
+        // setDisplayForClaimReceivedPage14_Edit();
+        // function setDisplayForClaimReceivedPage14_Edit() {
+        //     let selected = $('#claim_received_page14').val();
+        //     if(selected == 'received'){
+        //         $('#amount_page14').fadeIn();
+        //         $('#date_page14').fadeIn();
+        //         $('#reason_page14').fadeOut();
+        //         $('#fee_page14').fadeOut();
+        //         $('#recovery_page14').fadeOut();
+        //     }
+        //     else if(selected == 'rejected'){
+        //         $('#amount_page14').fadeOut();
+        //         $('#date_page14').fadeOut();
+        //         $('#reason_page14').fadeIn();
+        //         $('#fee_page14').fadeIn();
+        //         $('#recovery_page14').fadeIn();
+        //     }
+        //     else if(selected == 'notReceived'){
+        //         $('#amount_page14').fadeOut();
+        //         $('#date_page14').fadeOut();
+        //         $('#reason_page14').fadeIn();
+        //         $('#fee_page14').fadeOut();
+        //         $('#recovery_page14').fadeOut();
+        //     }
+        //     else if(selected == 'cancelled'){
+        //         $('#amount_page14').fadeOut();
+        //         $('#date_page14').fadeOut();
+        //         $('#reason_page14').fadeIn();
+        //         $('#fee_page14').fadeOut();
+        //         $('#recovery_page14').fadeOut();
+        //     }
+        //     else{
+        //         $('#amount_page14').fadeOut();
+        //         $('#date_page14').fadeOut();
+        //         $('#reason_page14').fadeOut();
+        //         $('#fee_page14').fadeOut();
+        //         $('#recovery_page14').fadeOut();
+        //     }
+        // }
+
+        function setDisplayForClaimReceivedPage14(e) {
+            if($(e.target).val() == 'received'){
+                $(e.target).parent().next().find('#provisional_amount_1').val('');
+                $(e.target).parent().next().find('#provisional_date_1').val('');
+                // $('#amount_page14').fadeIn();
+                // $('#date_page14').fadeIn();
+                // $('#reason_page14').fadeOut();
+                // $('#fee_page14').fadeOut();
+                // $('#recovery_page14').fadeOut();
+
+
+                $(e.target).parent().next($('#amount_page14')).fadeIn();
+                $(e.target).parent().next().next($('#date_page14')).fadeIn();
+                $(e.target).parent().next().next().next($('#reason_page14')).fadeOut();
+                $(e.target).parent().next().next().next().next($('#fee_page14')).fadeOut();
+                $(e.target).parent().next().next().next().next().next($('#recovery_page14')).fadeOut();
+
+
+            }
+            else if($(e.target).val() == 'rejected'){
+                $(e.target).parent().next().find('#provisional_cfe_fee').val('');
+                $(e.target).parent().next().find('#provisional_reason_1').val('');
+                $(e.target).parent().next().find('#provisional_recovery_student').val('');
+                // $('#amount_page14').fadeOut();
+                // $('#date_page14').fadeOut();
+                // $('#reason_page14').fadeIn();
+                // $('#fee_page14').fadeIn();
+                // $('#recovery_page14').fadeIn();
+
+                $(e.target).parent().next($('#amount_page14')).fadeOut();
+                $(e.target).parent().next().next($('#date_page14')).fadeOut();
+                $(e.target).parent().next().next().next($('#reason_page14')).fadeIn();
+                $(e.target).parent().next().next().next().next($('#fee_page14')).fadeIn();
+                $(e.target).parent().next().next().next().next().next($('#recovery_page14')).fadeIn();
+            }
+            else if($(e.target).val() == 'notReceived'){
+                $(e.target).parent().next().find('#provisional_reason_1').val('');
+                // $('#amount_page14').fadeOut();
+                // $('#date_page14').fadeOut();
+                // $('#reason_page14').fadeIn();
+                // $('#fee_page14').fadeOut();
+                // $('#recovery_page14').fadeOut();
+
+                $(e.target).parent().next($('#amount_page14')).fadeOut();
+                $(e.target).parent().next().next($('#date_page14')).fadeOut();
+                $(e.target).parent().next().next().next($('#reason_page14')).fadeIn();
+                $(e.target).parent().next().next().next().next($('#fee_page14')).fadeOut();
+                $(e.target).parent().next().next().next().next().next($('#recovery_page14')).fadeOut();
+            }
+            else if($(e.target).val() == 'cancelled'){
+                $(e.target).parent().next().find('#provisional_reason_1').val('');
+                // $('#amount_page14').fadeOut();
+                // $('#date_page14').fadeOut();
+                // $('#reason_page14').fadeIn();
+                // $('#fee_page14').fadeOut();
+                // $('#recovery_page14').fadeOut();
+
+                $(e.target).parent().next($('#amount_page14')).fadeOut();
+                $(e.target).parent().next().next($('#date_page14')).fadeOut();
+                $(e.target).parent().next().next().next($('#reason_page14')).fadeIn();
+                $(e.target).parent().next().next().next().next($('#fee_page14')).fadeOut();
+                $(e.target).parent().next().next().next().next().next($('#recovery_page14')).fadeOut();
+            }
+            else{
+                // $('#amount_page14').fadeOut();
+                // $('#date_page14').fadeOut();
+                // $('#reason_page14').fadeOut();
+                // $('#fee_page14').fadeOut();
+                // $('#recovery_page14').fadeOut();
+
+                $(e.target).parent().next($('#amount_page14')).fadeOut();
+                $(e.target).parent().next().next($('#date_page14')).fadeOut();
+                $(e.target).parent().next().next().next($('#reason_page14')).fadeOut();
+                $(e.target).parent().next().next().next().next($('#fee_page14')).fadeOut();
+                $(e.target).parent().next().next().next().next().next($('#recovery_page14')).fadeOut();
+            }
+        }
+
+        function setStatusDateDisplay() {
+            if($('#status_page10').val() == 'issued'){
+                $('#provisional_issued_1').val('');
+                $('#status_div_page10').fadeIn();
+            }
+            else{
+                $('#status_div_page10').fadeOut();
+            }
+        }
+        function numericOnly(event) {
+            let value = $(event.target).val();
+            let length  = value.length;
+            let regex = new RegExp("^[0-9]+$");
+            let str = value.substr(length-1,1);
+            if (!regex.test(str)) {
+                $(e.target).val(value.substring(0,length-1));
+            }
+        }
+        function provisionalLetterDate(event) {
+           var value = String.fromCharCode(event.which);
+           var pattern = new RegExp(/[a-zåäö ]/i);
+           return pattern.test(value);
+        }
+
+        function cloneProvisionalLetter(){
+
+            let clone = $('#provisional_letter').clone();
+
+            clone.find('input:text').val('');
+            $('#provisional_letter_parent').append(clone);
+            let button = clone.find('#removeProvisionalLetterButton').removeAttr('disabled');
+            clone.find('#provisional_letter_serial_no').val($('#provisional_letter input[name="serial_no[]"').length);
+            $('input[name="claim_due[]"]').each(function (index,value) {
+                $(value);
+            });
+            clone.find('.datepicker').datepicker({
+                format:'dd/mm/yyyy',
+                endDate: new Date(),
+                autoclose: true
+            });
+             }
+        function removeProvisionalLetterField(event) {
+            if(index_id) {
+                let csrf_token = $('meta[name="csrf-token"]').attr('content');
+                let request = $.ajax({
+                    url: '/provisional-letter-delete',
+                    method: "POST",
+                    data: {
+                        'index_id' : index_id,
+                        'serial_no' : $(event.target).parent().parent().find('#provisional_letter_serial_no').val()
+                    },
+                    headers:{
+                        'X-CSRF-TOKEN':csrf_token
+                    }
+                });
+
+                request.done(function (response) {
+                });
+
+                request.fail(function (jqXHR, textStatus) {
+                    // alert("Request failed: " + textStatus);
+                });
+            }
+            $(event.target).parent().parent().remove();
+            $('#provisional_letter input[name="serial_no[]"').each(function (index,value) {
+                $(value).val(index+1);
+            });
+        }
+
+        $('#reason').bind('keypress', provisionalLetterDate);
+
+        //Others Type
+        function setClaimOthersField(e) {
+            if(e.target.value == 'other'){
+                // $('#provisional_claim_type_01').val('');
+                $(e.target).parent().next().show();/$('#studentrelationship').show()/;
+            }
+            else{
+                $(e.target).parent().next().hide();
+                $(e.target).parent().next().find('#provisional_claim_type_01').val('');
+                // $('#studentrelationship').hide();
+            }
+        }
+       </script>
+@endsection
