@@ -91,15 +91,51 @@
                         <div class="row padding-10">
                             <div class="col-3">
                                 {!! Form::label('organization', 'Organization:') !!}<span style="color: red">*</span>
-                                {!! Form::select('organization_id', App\Models\Organization::pluck('name', 'id'), array_key_first(App\Models\Organization::pluck('name', 'id')->toArray()), ['id' => 'organization_id', 'required', 'class' => 'form-control select2', 'placeholder' => '--- Select Organization ---', 'required', 'value' => old('organization_id')]) !!}
+                                {!! Form::select(
+                                    'organization_id',
+                                    App\Models\Organization::pluck('name', 'id'),
+                                    array_key_first(App\Models\Organization::pluck('name', 'id')->toArray()),
+                                    [
+                                        'id' => 'organization_id',
+                                        'required' => 'required', // Added 'required' attribute here
+                                        'class' => 'form-control select2',
+                                        'placeholder' => '--- Select Organization ---',
+                                        'value' => old('organization_id')
+                                    ]
+                                ) !!}
+
                             </div>
                             <div class="col-3">
-                                {!! Form::label('office_location', 'Office Location(s):') !!}
-                                {!! Form::select('campus_ids[]', App\Models\OrganizationCampus::pluck('name', 'id'), null, ['id' => 'campus_id', 'class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => '--- Select Campuses ---', 'value' => old('campus_ids[]')]) !!}
+                                {!! Form::label('office_location', 'Office Location(s):') !!}<span style="color: red">*</span>
+                                {!! Form::select(
+                                    'campus_ids[]',
+                                    App\Models\OrganizationCampus::pluck('name', 'id'),
+                                    null,
+                                    [
+                                        'id' => 'campus_id',
+                                        'class' => 'form-control select2',
+                                        'multiple' => 'multiple', // Add 'multiple' attribute
+                                        'data-placeholder' => '--- Select Campuses ---',
+                                        'required' => 'required', // Add 'required' attribute
+                                        'value' => old('campus_ids[]')
+                                    ]
+                                ) !!}
+
                             </div>
                              <div class="col-3">
-                                {!! Form::label('roles', 'Roles:') !!}
-                                {!! Form::select('role',$roles, null, ['id' => 'role_id', 'class' => 'form-control select2', 'data-placeholder' => '--- Select Roles ---', 'value' => old('role_id[]')]) !!}
+                                {!! Form::label('roles', 'Roles:') !!}<span style="color: red">*</span>
+                                {!! Form::select(
+                                        'role',
+                                        $roles,
+                                        null,
+                                        [
+                                            'id' => 'role_id',
+                                            'class' => 'form-control select2',
+                                            'data-placeholder' => '--- Select Roles ---',
+                                            'required' => 'required', // Add 'required' attribute here
+                                            'value' => old('role_id[]')
+                                        ]
+                                    ) !!}
                             </div>
                         </div>
                     </div>

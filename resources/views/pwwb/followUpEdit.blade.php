@@ -180,7 +180,7 @@
                    <input class="form-control" name="called_by" placeholder="Enter Called By" required="" type="input"/>
             </div>
             <div class="form-group  col-md-3">
-                    {!! Form::label('status', 'Call Status:') !!}
+                    <span style="color: red;">* </span>{!! Form::label('status', 'Call Status:') !!}
                     {!! Form::select('call_status', config('constants.call_statuses'), null, ['id' => 'call_status_id', 'class' => 'form-control select2-multiple', 'placeholder' => 'Select Status', 'onchange' => 'onCallStatusSelect()', 'required']) !!}
             </div>
             <div class="form-group col-md-3" id="photograph_attested_page_02">
@@ -239,7 +239,7 @@
         <div class="card-header clearfix font-weight-bold">
             Followup Details (Eligible):
         </div>
-        <span class="text-danger"><b>Note: </b><u>Last followup will be shown at top in below history</u></span>
+        <span class="text-danger"><b>Note: </b><u>Latest Follow-up is being shown at top</u></span>
             <table cellspacing="0" class="table table-striped table-bordered" isdefault="true" width="100%">
                 <thead>
                     <tr>

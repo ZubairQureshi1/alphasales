@@ -116,7 +116,6 @@
                             <div class="col-3">
                                 {!! Form::label('roles', 'Roles:') !!}
                                 <select class="form-control select2" id="role_id" name="role">
-                                    <option>-------- Select Role --------</option>
                                     @foreach ($roles as $role)
                                         <option {{ $user['user_role']['name'] == $role->name ? 'selected' : '' }} value="{{ $role->name }}">
                                             {{ $role->display_name }}

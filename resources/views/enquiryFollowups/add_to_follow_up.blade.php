@@ -261,18 +261,18 @@
                                     <input class="form-control" hidden="hidden" type="text" id="followup_id"
                                         name="followup_id" />
                                     <div class="col-md-4">
-                                        <label>Called By: </label>
+                                        <label><span style="color: red;">* </span>Called By: </label>
                                         <div>
                                             <input class="form-control" name="called_by" placeholder="Enter Called By"
                                                 required="" type="input" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        {!! Form::label('status', '* Call Type:') !!}
+                                    <span style="color: red;">* </span>{!! Form::label('status', 'Call Type:') !!}
                                         {!! Form::select('call_status', config('constants.call_statuses'), null, ['id' => 'call_status_id', 'class' => 'form-control select2-multiple', 'placeholder' => 'Select Status', 'onchange' => 'onCallStatusSelect()', 'required']) !!}
                                     </div>
                                     <div class="col-md-4">
-                                        {!! Form::label('status', '* Call Status:') !!}
+                                    <span style="color: red;">* </span>{!! Form::label('status', 'Call Status:') !!}
                                         {!! Form::select('status', [], null, ['id' => 'followup_statuses', 'class' => 'form-control select2-multiple', 'placeholder' => 'Select Status', 'onchange' => 'onFollowupStatusSelect()', 'required']) !!}
                                     </div>
                                     {{-- <div class="col-md-4" id="answered_by_div" hidden="true">
@@ -291,12 +291,12 @@
                                         </div>
                                     </div> --}}
                                     <div class="col-md-4" id="followup_interested_level_div" hidden="true">
-                                        {!! Form::label('ranking', 'Follow Up Ranking:') !!}
+                                    <span style="color: red;">* </span>{!! Form::label('ranking', 'Follow Up Ranking:') !!}
                                         {!! Form::select('interest_level_id', config('constants.follow_up_interested_levels'), null, ['id' => 'interest_level_id', 'class' => 'form-control select2-multiple', 'placeholder' => 'Select Follow Up Ranking', 'required']) !!}
                                     </div>
                                     <div class="col-md-4" id="followup_date_div" hidden="true">
                                         <label>
-                                            Next Follow Up Date:
+                                        <span style="color: red;">* </span>Next Follow Up Date:
                                         </label>
                                         <div>
                                             <input class="form-control" data-date-format="YYYY-MM-DD" name="next_date"
@@ -315,7 +315,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label>
-                                            Remarks:
+                                        <span style="color: red;">* </span>Remarks:
                                         </label>
                                         <div>
                                             <textarea class="form-control" name="remarks" id="remarks" required="" rows="2"></textarea>
