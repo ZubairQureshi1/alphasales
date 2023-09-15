@@ -32,7 +32,7 @@
                                             class="rounded-circle">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                        <a class="dropdown-item" href="http://localhost/cms_alpha_client/profiles"><i class="dripicons-user text-muted"></i>
+                                        <a class="dropdown-item" href="/alphasales/profiles"><i class="dripicons-user text-muted"></i>
                                             Profile</a>
                                       <!-- <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted"></i>
                                             Lock screen</a> -->

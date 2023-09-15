@@ -383,6 +383,14 @@ class AdmissionController extends Controller
         ];
     }
 
+
+    
+
+    public function profile()
+    {
+        return view('installmentPlan.create');
+    }
+
     public function index(Request $request)
     {
         return view('admissions.index')->with('table_cols_configuration', Globals::getTableColumnsConfiguation($this->table_name))->with('model_path', $this->model_path)->with('table_name', $this->table_name)->with('filters_configuration', $this->filters_configuration);

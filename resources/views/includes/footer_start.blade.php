@@ -1,5 +1,5 @@
                 <footer class="footer">
-                    © 2022 Lead Managment System - Product by <strong style="color: #0171c3;">Centillion Solutions</strong>
+                    © 2022 Lead Managment System - Product by <strong style="color: #0171c3;">TechFocal</strong>
                 </footer>
 
                 </div>

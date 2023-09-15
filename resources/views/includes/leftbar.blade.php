@@ -28,15 +28,13 @@
         <div class="topbar-left" style="background-color: #0171c3; ">
             <div class="">
                 <div class="topbar-left-img-div ">
-                    <img alt="Nature" class="m-t-20 m-b-5 rounded-circle circular_image"
-                        src="{{ asset('assets/images/users/dummy.png') }}" style="width:30%;" />
-                    <div class="topbar-left-detail-div">
+                    <div style="height:50px; width:20%;">
+                    <div class="topbar-left-detail-div" style="margin-left: 50px;">
                         <p class="textcolor_light_grey m-b-5 font-12">
                             {{ ucfirst(Auth::user()->name) }}
                         </p>
-                        <h4 class="textcolor_white font-14 mt-0 m-b-5">
-                            {{ ucfirst(Auth::user()->emp_code) }}
-                        </h4>
+                        
+                    </div>
                     </div>
                 </div>
                 <!--<a href="index" class="logo text-center">Fonik</a>-->

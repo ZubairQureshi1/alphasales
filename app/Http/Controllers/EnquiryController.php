@@ -1281,7 +1281,7 @@ class EnquiryController extends AppBaseController
     }
     public function ImportEnq()
     {
-
+        
         if(!empty($_FILES['csv-enquiries'])){
             
             $tmpName = $_FILES['csv-enquiries']['tmp_name'];
@@ -1315,11 +1315,14 @@ class EnquiryController extends AppBaseController
                 }
                 $enquiry = Enquiry::create([
                     'name' => $value[0],
+                    'father_occupation' => "SHEET",
                     'phone1' => $value[1],
-                    'enquiry_date' => $enDate ,
+                    'enquiry_date' => $enDate,
                     'user_id' => Auth::id(),
                     'form_code'=>"ENQ-".$lastId,
                 ]);
+
+                
                  
             }
             alertify()->success('Imported successfully.');

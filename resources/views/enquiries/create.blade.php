@@ -61,8 +61,8 @@ PAGE CONTENT START
             var id = $(this).val();
             // alert(id);
             // Empty the dropdown
-            $('#product_id').find('option').not(':first').remove();
-
+            // $('#product_id').find('option').not(':first').remove();
+            $('#product_id').find('option').remove();
             // AJAX request
             $.ajax({
                 url: 'getProduct/' + id,
@@ -74,18 +74,23 @@ PAGE CONTENT START
                     if (response['data'] != null) {
                         len = response['data'].length;
                     }
-
+                    
                     if (len > 0) {
+                        
+                        let option = "<option value='' selected disabled>--- Select Product ---</option>";
+                        $("#product_id").append(option); 
                         // Read data and create <option >
                         for (var i = 0; i < len; i++) {
-
+                            
                             var id = response['data'][i].id;
                             var name = response['data'][i].name;
 
-                            var option = "<option value='" + id + "'>" + name + "</option>";
-
-                            $("#product_id").append(option);
+                              var option1 = "<option value='" + id + "'>" + name + "</option>";
+                
+                            $("#product_id").append(option1);                            
                         }
+                                                       
+                        
                     }
 
                 }
@@ -102,8 +107,8 @@ PAGE CONTENT START
             var id = $(this).val();
             // alert(id);
             // Empty the dropdown
-            $('#developer_id').find('option').not(':first').remove();
-
+            // $('#developer_id').find('option').not(':first').remove();
+            $('#developer_id').find('option').remove();
             // AJAX request
             $.ajax({
                 url: 'getDeveloper/' + id,
@@ -117,16 +122,17 @@ PAGE CONTENT START
                     }
 
                     if (len > 0) {
-                        // Read data and create <option >
+                        let option = "<option value='' selected disabled>--- Select Developer ---</option>";
+                        $("#developer_id").append(option);
                         for (var i = 0; i < len; i++) {
 
                             var id = response['data'][i].id;
                             var name = response['data'][i].name;
 
-                            var option = "<option value='" + id + "'>" + name + "</option>";
+                            var option1 = "<option value='" + id + "'>" + name + "</option>";
 
 
-                            $("#developer_id").append(option);
+                            $("#developer_id").append(option1);
                         }
                     }
 

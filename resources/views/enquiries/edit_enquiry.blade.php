@@ -1,4 +1,4 @@
-<form method="post" action="{{ url('/') }}/enquiries/{{ $enquiry->id }}" novalidate enctype="multipart/form-data">
+<form id="myForm" method="post" action="{{ url('/') }}/enquiries/{{ $enquiry->id }}" novalidate enctype="multipart/form-data">
     {{ method_field('PATCH') }}
     @csrf
     {{-- BASIC INFORMATION --}}
@@ -113,12 +113,12 @@
 
                         <div class="form-group col-md-3">
                             <label>Gender:</label>
-                            {!! Form::select('gender_id', config('constants.genders'), $enquiry->gender_id, ['id' => 'gender_id', 'class' => 'form-control select2 item-required', 'placeholder' => '--- Select Gender ---', 'errorLabel' => 'Gender']) !!}
-                            <span id="gender_msg" hidden="hidden" style="color: red">Gender Required</span>
+                            {!! Form::select('gender_id', config('constants.genders'), $enquiry->gender_id, ['id' => 'gender_id', 'class' => 'form-control select2 item-required',  'errorLabel' => 'Gender']) !!}
+                            <span id="gender_msg" hidden="hidden" style="color: red" required>Gender Required</span>
                         </div>
                         <div class="form-group col-md-3">
                             <label>City:</label>
-                            {!! Form::select('city_id', $cities, $enquiry->city_id, ['id' => 'city_id', 'class' => 'form-control select2', 'placeholder' => '----- Select City -----', 'onchange' => 'onCitySelect()']) !!}
+                            {!! Form::select('city_id', $cities, $enquiry->city_id, ['id' => 'city_id', 'class' => 'form-control select2', 'onchange' => 'onCitySelect()']) !!}
                         </div>
                         <div class="form-group col-md-3" id="city_other_name"
                             {{ $enquiry->city_id == 128 ? '' : 'hidden="true"' }}>
@@ -485,20 +485,20 @@
         <div class="m-t-10 div-border">
             <div class="margin-10">
                 <div class="row">
-                    <div class="form-group col-md-3">
+                
+
+@if($enquiry->father_occupation =='SHEET' && $enquiry->developer_name == NULL)         
+<div class="form-group col-md-3">
                         <label>
-                            <span style="color: red;">* </span>Project:
+                        <span style="color: red;">* </span>Project:
                         </label>
                         <div>
                             <select class="form-control select2 item-required" id="project_id" errorLabel="Project"
                                 name="project_id">
-
-                                <option value="" selected disabled>--- Select Project ---</option>
+                                <!-- <option value="" selected disabled>--- Select Project ---</option> -->
                                 @foreach (App\Models\Wing::select('name', 'id')->orderBy('name')->get()
     as $project)
-                                    <option value="{{ $project->id }}"
-                                        {{ $project->id == $enquiry->project_id ? 'selected' : '' }}>
-                                        {{ $project->name }}</option>
+                                    <option value="{{ $project->id }}">{{ $project->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -511,7 +511,57 @@
                         </label>
                         <div>
                             <select class="form-control select2 item-required" id="product_id" errorLabel="Product"
-                                name="product_id">
+                                name="product_id" required>
+                                <!-- <option value="" selected disabled>--- Select Product ---</option> -->
+                                {{-- @foreach (App\Models\Course::select('name', 'id')->orderBy('name')->get()
+    as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach --}}
+                            </select>
+                        </div>
+                    </div>
+                     <div class="form-group col-md-3">
+                        <label>
+                        <span style="color: red;">* </span>Developer:
+                        </label>
+                        <div>
+                            <select class="form-control select2 item-required" id="developer_id" errorLabel="Developer"
+                                name="developer_id" required>
+                                <!-- <option value="" selected disabled>--- Select Developer ---</option> -->
+                                {{-- @foreach (App\Models\AffiliatedBody::select('name', 'id')->orderBy('name')->get()
+    as $developer)
+                                    <option value="{{ $developer->id }}">{{ $developer->name }}</option>
+                                @endforeach --}}
+                            </select>
+                        </div>
+                    </div>
+@else
+<div class="form-group col-md-3">
+                        <label>
+                            <span style="color: red;">* </span>Project:
+                        </label>
+                        <div>
+                            <select class="form-control select2 item-required" id="project_id1" errorLabel="Project"
+                                name="project_id" disabled>
+
+                                <option value="" selected disabled>--- Select Project ---</option>
+                                @foreach (App\Models\Wing::select('name', 'id')->orderBy('name')->get()
+    as $project)
+                                    <option value="{{ $project->id }}"
+                                        {{ $project->id == $enquiry->project_id ? 'selected' : '' }}>
+                                        {{ $project->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control-file" name="project_id" value="{{ $enquiry->project_id }}">
+                    <div class="form-group col-md-3">
+                        <label>
+                        <span style="color: red;">* </span>Product:
+                        </label>
+                        <div>
+                            <select class="form-control select2 item-required" id="product_id1" errorLabel="Product"
+                                name="product_id" disabled>
                                 {{-- <option value="" selected disabled>--- Select Product ---</option> --}}
                                 <option value="{{ $enquiry->product_id }}">{{ $enquiry->product_name }}</option>
                                 {{-- @foreach (App\Models\Course::select('name', 'id')->orderBy('name')->get()
@@ -521,14 +571,14 @@
                             </select>
                         </div>
                     </div>
-
+                    <input type="hidden" class="form-control-file" name="product_id" value="{{ $enquiry->product_id }}">
                     <div class="form-group col-md-3">
                         <label>
                         <span style="color: red;">* </span>Developer:
                         </label>
                         <div>
-                            <select class="form-control select2 item-required" id="developer_id" errorLabel="Developer"
-                                name="developer_id">
+                            <select class="form-control select2 item-required" id="developer_id1" errorLabel="Developer"
+                                name="developer_id" disabled>
                                 {{-- <option value="" selected disabled>--- Select Developer ---</option> --}}
                                 <option value="{{ $enquiry->developer_id }}">{{ $enquiry->developer_name }}
                                 </option>
@@ -539,6 +589,14 @@
                             </select>
                         </div>
                     </div>
+                    <input type="hidden" class="form-control-file" name="developer_id" value="{{ $enquiry->developer_id }}">
+@endif
+                   
+
+
+                    
+
+                    
 
                     <div class="form-group col-md-3">
                         <label>Price Offered:</label>
@@ -744,4 +802,26 @@
             </div>
         </div>
     </div>
+    <script>
+        
+        const form = document.getElementById('myForm')
+        form.addEventListener('submit', (e)=>{
+        const product = document.getElementById('product_id')
+        const developer = document.getElementById('developer_id')
+        if(product.value === "" || product.value === null || developer.value === "" || developer.value === null){
+            e.preventDefault()
+            alert("Product and Developer are not selected")
+        }
+    })
+
+
+        
+
+
+
+
+        
+    </script>
 </form>
+
+

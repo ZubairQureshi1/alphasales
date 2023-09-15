@@ -559,6 +559,9 @@ Route::middleware(['auth', 'is_guest'])->group(function () {
     // Route::get('edit',function(){
     //     return view('examtypes.edit');
     // });
+
+    
+    Route::get('profile', 'AdmissionController@profile');
     Route::get('admissionGrowth', 'AdmissionController@admissionGrowth');
     Route::post('loadAdmissionMonthlyDataChart', 'AdmissionController@admissionMonthlyChart');
     Route::post('loadAdmissionYearlyDataChart', 'AdmissionController@admissionYearlyChart');

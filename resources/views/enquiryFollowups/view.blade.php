@@ -64,6 +64,7 @@
                                 Enquiry Details: 
                             </strong>
                             <br>
+                            
                             ENQ-{{$followup->id}}
                         </h5>
                         <div class="">

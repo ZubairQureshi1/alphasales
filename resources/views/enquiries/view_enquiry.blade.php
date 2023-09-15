@@ -108,7 +108,7 @@
                         <div class="form-group col-md-3">
                             <label>Gender:</label>
                             {!! Form::select('gender_id', config('constants.genders'), $enquiry->gender_id, ['id' => 'gender_id', 'class' => 'form-control select2 item-required', 'placeholder' => '--- Select Gender ---', 'errorLabel' => 'Gender']) !!}
-                            <span id="gender_msg" hidden="hidden" style="color: red">Gender Required</span>
+                            <span id="gender_msg" hidden="hidden" style="color: red" required>Gender Required</span>
                         </div>
                         <div class="form-group col-md-3">
                             <label>City:</label>
@@ -481,7 +481,7 @@
     {{-- REFERENCES INFORMATION --}}
     <div class="m-b-10">
         <strong>
-            Product Information:
+            Product Information: 
         </strong>
         <div class="m-t-10 div-border">
             <div class="margin-10">

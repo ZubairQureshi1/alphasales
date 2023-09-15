@@ -136,13 +136,13 @@
                             <label>
                                 Gender:
                             </label>
-                            {!! Form::select('gender_id', config('constants.genders'), null, ['id' => 'gender_id', 'class' => 'form-control select2 item-required', 'placeholder' => '--- Select Gender ---', 'errorLabel' => 'Gender']) !!}
+                            {!! Form::select('gender_id', config('constants.genders'), null, ['id' => 'gender_id', 'class' => 'form-control select2 item-required',  'errorLabel' => 'Gender'  ]) !!}
                         </div>
                         <div class="form-group col-md-3">
                             <label>
                                 City:
                             </label>
-                            {!! Form::select('city_id', $cities, null, ['id' => 'city_id', 'class' => 'form-control select2 item-required', 'placeholder' => '----- Select -----', 'onchange' => 'onCitySelect()']) !!}
+                            {!! Form::select('city_id', $cities, null, ['id' => 'city_id', 'class' => 'form-control select2 item-required', 'onchange' => 'onCitySelect()']) !!}
                         </div>
                         <div class="form-group col-md-3" id="city_other_name" hidden="true">
                             <label>

@@ -145,14 +145,104 @@
             move_to_followup = true;
         }
 
-
         $('#project_id').change(function() {
+            $('#student_cnic_no').on('input', function() {
+              $(this).val($(this).val().replace(/[^a-z0-9]/gi, ''));
+            });
+            // Department id
+            var id = $(this).val();
+            // alert(id);
+            // Empty the dropdown
+            // $('#product_id').find('option').not(':first').remove();
+            $('#product_id').find('option').remove();
+            // AJAX request
+            const host = window.location.host
+            console.log(host)
+            $.ajax({
+                url: `http://${host}/alphasales/enquiries/getProduct/` + id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response['data']);
+                    var len = 0;
+                    if (response['data'] != null) {
+                        len = response['data'].length;
+                    }
+                    
+                    if (len > 0) {
+                        
+                        let option = "<option value='' selected disabled>--- Select Product ---</option>";
+                        $("#product_id").append(option); 
+                        // Read data and create <option >
+                        for (var i = 0; i < len; i++) {
+                            
+                            var id = response['data'][i].id;
+                            var name = response['data'][i].name;
+
+                              var option1 = "<option value='" + id + "'>" + name + "</option>";
+                
+                            $("#product_id").append(option1);                            
+                        }
+                                                       
+                        
+                    }
+
+                },
+                error: function(responce){
+                    console.log(responce);
+                }
+
+            });
+        });
+
+        $('#product_id').change(function() {
+
+                // Department id
+                var id = $(this).val();
+                // alert(id);
+                // Empty the dropdown
+                // $('#developer_id').find('option').not(':first').remove();
+                $('#developer_id').find('option').remove();
+                // AJAX request
+                const host = window.location.host
+                $.ajax({
+                    url: `http://${host}/alphasales/enquiries/getDeveloper/` + id,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response['data']);
+                        var len = 0;
+                        if (response['data'] != null) {
+                            len = response['data'].length;
+                        }
+
+                        if (len > 0) {
+                            let option = "<option value='' selected disabled>--- Select Developer ---</option>";
+                            $("#developer_id").append(option);
+                            for (var i = 0; i < len; i++) {
+
+                                var id = response['data'][i].id;
+                                var name = response['data'][i].name;
+
+                                var option1 = "<option value='" + id + "'>" + name + "</option>";
+
+
+                                $("#developer_id").append(option1);
+                            }
+                        }
+
+                    }
+                });
+                });
+        
+
+        $('#project_id1').change(function() {
 
             // Department id
             var id = $(this).val();
             //alert(id);
             // Empty the dropdown
-            $('#product_id').find('option').not(':first').remove();
+            $('#product_id1').find('option').not(':first').remove();
 
             // AJAX request
             $.ajax({
@@ -175,7 +265,7 @@
 
                             var option = "<option value='" + id + "'>" + name + "</option>";
 
-                            $("#product_id").append(option);
+                            $("#product_id1").append(option);
                         }
                     }
 
@@ -187,13 +277,13 @@
 
 
 
-        $('#product_id').change(function() {
+        $('#product_id1').change(function() {
 
             // Department id
             var id = $(this).val();
             //alert(id);
             // Empty the dropdown
-            $('#developer_id').find('option').not(':first').remove();
+            $('#developer_id1').find('option').not(':first').remove();
             // $.ajax({
             //     url: $('.appUrl').val() + '/enquiries/getProduct/' + id,
             //     type: 'get',
@@ -242,7 +332,7 @@
                             var option = "<option value='" + id + "'>" + name + "</option>";
 
 
-                            $("#developer_id").append(option);
+                            $("#developer_id1").append(option);
                         }
                     }
 
