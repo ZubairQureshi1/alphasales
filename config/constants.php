@@ -128,6 +128,7 @@ return [
     ],
     'call_statuses'               => [
         'Answered' => "Answered",
+        'Will Call Back' => "Will Call Back",
         'Not Answered' => "Not Answered",
     ],
     'attachment_types'            => [

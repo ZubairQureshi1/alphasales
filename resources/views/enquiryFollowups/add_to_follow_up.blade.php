@@ -377,6 +377,7 @@
                                     <th>
                                         Revised Price
                                     </th>
+                                    
                                     @can('delete_followups')
                                         <th class="text-center">
                                             Actions

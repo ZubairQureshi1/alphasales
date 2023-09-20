@@ -32,7 +32,7 @@ function onCallStatusSelect() {
 						'Call Disconnected',
 						'Wrong No.',
 						];
-	if (call_status_id == "Answered") {
+	if (call_status_id == "Answered" || call_status_id == "Will Call Back") {
 		$('#followup_statuses').html($('<option></option>').val('').html('--- Select Status ---'));
 		$.each(constants.followup_statuses, function(index, value) {
             // console.log(index);
@@ -56,6 +56,7 @@ function onCallStatusSelect() {
 			}
 		});
 	}
+
 }
 
 function onFollowupStatusSelect(prospect_id = null) {

@@ -27,113 +27,94 @@
 
 <!-- Content start from here -->
 
-<div class="page-content-wrapper">
-    <div class="row justify-content-center">
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header" style="background:#0171c3; color:white;font-size: 16px;">
-                       <span>
-                         Enquiry by agent
-                       </span> 
-                        <span>
-                        <select class="float-right selectstatus" id="enq_byagnt">
-                            <option value="0" selected>Select</option>
-                            @foreach($userAgents as $user)
-                            <option value="{{$user->tot}}">{{$user->name}}</option>
-                            @endforeach
-                        </select>  
-                       </span> 
-                    </div>
+                <div class="page-content-wrapper">
+                    <div class="row justify-content-center">
+                            <div class="col-6">
+                                
+                                <div class="card">
+                                <a onclick="pageRedirect(1)">
+                                    <div class="card-header" style="background:#0171c3; color:white;font-size: 16px;">
+                                    <span>
+                                        All Enquiries Report
+                                    </span> 
+                                    </div>
+                                </a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card">
+                                <a onclick="pageRedirect(2)">
 
-                    <div class="card-body"> 
-                         <span id="enq_byagnt_span">0</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header" style="background:#0171c3; color:white;font-size: 16px;">
-                       <span>
-                        Enquiry by priority
-                       </span> 
-                        <span>
-                        <select class="float-right selectstatus" id="enq_prior">
-                            <option value="0" selected>Select</option>
-                            @foreach($rankwiseEnq as $enq)
-                            <option value="{{$enq['tot']}}">{{$enq['interst']}}</option>
-                            @endforeach
-                        </select>  
-                       </span> 
-                    </div>
+                                    <div class="card-header" style="background:#0171c3; color:white;font-size: 16px;">
+                                    <span>
+                                        All Follow-ups Report
+                                    </span> 
+                                    </div>
+                                    </a>
+                                
+                                </div>
+                            </div>
+                            <div class="col-6 mt-4">
+                                <div class="card">
+                                <a onclick="pageRedirect(3)">
 
-                    <div class="card-body"> 
-                         <span id="enq_prior_span">0</span>
+                                    <div class="card-header" style="background:#0171c3; color:white;font-size: 16px;">
+                                    <span>
+                                        Inbound Calls Not Received
+                                    </span> 
+                                    </div>
+                                    </a>
+                                
+                                </div>
+                            </div>
+                            <!-- <div class="col-6 mt-4">
+                                <div class="card">
+                                <a href="{{ url('http://localhost/Reports/LeadAssignment.php') }}">
+                                    <div class="card-header" style="background:#0171c3; color:white;font-size: 16px;">
+                                    <span>
+                                    Enquiries Assignment Report
+                                    </span> 
+                                    </div>
+                                    </a>
+                                
+                                </div>
+                            </div> -->
+                            <div class="col-6 mt-4">
+                                <div class="card">
+                                <a onclick="pageRedirect(4)">
+
+                                    <div class="card-header" style="background:#0171c3; color:white;font-size: 16px;">
+                                    <span>
+                                     Overdue FollowUp
+                                    </span> 
+                                    </div>
+                                    </a>
+                                    <script>
+                                        const pageRedirect = (e) => {
+                                            if(e === 1){
+
+                                                window.location.replace(`http://${window.location.host}/Reports/Enquiry.php`);
+                                            }else if(e === 2){
+                                                window.location.replace(`http://${window.location.host}/Reports/FollowUp.php`);
+
+                                            }else if(e === 3){
+                                                window.location.replace(`http://${window.location.host}/Reports/InBoundCallsNotReceived.php`);
+
+                                            }else if (e ===4){
+                                                window.location.replace(`http://${window.location.host}/Reports/OverDueFollowUp.php`);
+
+                                            }else{
+                                                window.location.reload();
+
+                                            }
+                                        }
+                                        </script>
+                                
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-6 mt-1">
-                <div class="card">
-                    <div class="card-header" style="background: #0171c3; color:white;font-size: 16px;">
-                    <span>
-                        Enquiry by status
-                    </span> 
-                    <span>
-                    <select class="float-right selectstatus" id="enq_status">
-                        <option value="0" selected>Select</option>
-                        @foreach($statuswiseEnq as $enst)
-                        <option value="{{$enst['tot']}}">{{$enst['status']}}</option>
-                        @endforeach
-                    </select>  
-                   </span>
-                    </div>
-                    <div class="card-body"> 
-                        <span id="enq_status_span">0</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 mt-1">
-                <div class="card">
-                    <div class="card-header" style="background: #0171c3; color:white;font-size: 16px;">
-                        <span>
-                        Enquiry by time
-                        </span> 
-                        <span>
-                        <select class="float-right selectstatus" id="enq_time">
-                            <option value="0" selected>Select</option>
-                            @foreach($followuprequired as $followupre)
-                            <option value="{{$followupre['tot']}}">{{$followupre['dur']}}</option>
-                            @endforeach
-                        </select>  
-                       </span>
-                    </div>
-                    <div class="card-body"> 
-                        <span id="enq_time_span">0</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 mt-1">
-                <div class="card">
-                    <div class="card-header" style="background: #0171c3; color:white;font-size: 16px;">  
-                        Overdue Follow-up
-                    </div>
-                    <div class="card-body"> 
-                        <span id="enq_time_span">{{ $overDue }}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 mt-1">
-                <div class="card">
-                    <div class="card-header" style="background: #0171c3; color:white;font-size: 16px;">  
-                        Unassigned Follow-up 
-                    </div>
-                    <div class="card-body"> 
-                        <span id="enq_time_span">{{ $unassigned }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @include('includes/footer_start')
 
         <!--Morris Chart-->

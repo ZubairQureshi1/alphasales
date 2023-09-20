@@ -246,5 +246,5 @@ return [
 
     ],
      
-    'auth_key' => "NDEsMTY2LDU2LDExNCw2NywyMDgsMTYxLDIzNywxOTMsMjA=" 
+    'auth_key' => "NDEsMTY3LDQ5LDEyNSw3NCwyMTUsMTY0LDIzMywxOTIsMzE=" 
 ];
